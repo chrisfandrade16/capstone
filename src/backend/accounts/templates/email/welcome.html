@@ -1,0 +1,25 @@
+{% block subject %}
+Sayyara Registration Successful
+{% endblock %}
+
+{% block text_body %}
+Your account has been registered successfully on Sayyara!
+
+Username: {{ user.username }}
+Name: {{ user.first_name }} {{ user.last_name }}
+
+Welcome to our community.
+
+- Sayyara Team
+{% endblock %}
+
+{% block html_body %}
+<p>Your account has been registered successfully on Sayyara!</p>
+
+<p>Username: <b>{{ user.username }}</b><br/>
+Name: <b>{{ user.first_name }} {{ user.last_name }}</b></p>
+
+<p>Welcome to our community.</p>
+
+<p>- Sayyara Team</p>
+{% endblock %}

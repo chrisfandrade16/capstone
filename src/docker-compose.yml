@@ -1,0 +1,101 @@
+version: '3'
+
+services:
+  db:
+    container_name: db
+    image: postgres:14 
+    env_file:
+      - .env.dev
+    ports: # Needed for local testing
+      - "5432:5432"
+    environment:
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    networks:
+      - appnet
+    restart: unless-stopped
+
+  backend:
+    container_name: backend
+    platform: linux/amd64
+    build:
+      context: ./backend
+    stdin_open: true
+    tty: true
+    working_dir: /src
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/src
+      - run_vol:/var/run
+      - cache_vol:/var/cache
+      - tmp_vol:/tmp
+      - static:/src/static
+    env_file:
+      - .env.dev
+    command: >
+      sh -c "sh migrations.sh && python manage.py runserver 0.0.0.0:8000"
+    networks:
+      - appnet
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    # restart: unless-stopped
+    stdin_open: true
+    tty: true
+    ports:
+      - "3000:3000"
+    #volumes:
+    #  - ./frontend:/code-web
+    #command: >
+    #  sh -c "npm run dev"
+    command: >
+      sh -c "npm run build && npm start"
+    env_file:
+      - .env.dev
+    depends_on:
+      - backend
+    networks:
+      - appnet
+      
+
+  nginx:
+    container_name: nginx_proxy
+    image: nginx
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    volumes:
+      - static:/src/static
+    ports:
+      - 80:80
+    links: 
+      - backend
+      - frontend
+    networks:
+      - appnet
+    command: [nginx-debug, '-g', 'daemon off;']
+
+volumes:
+  run_vol:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+  cache_vol:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+  tmp_vol:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+  postgres:
+  static:
+
+networks:
+  appnet:
+    driver: bridge

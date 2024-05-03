@@ -1,0 +1,180 @@
+\documentclass{article}
+
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+\title{Problem Statement and Goals\\\progname}
+
+\author{\authname}
+
+\date{}
+
+\input{../Comments}
+\input{../Common}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{lllX}
+\toprule
+\textbf{\#} \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
+\midrule
+& Sept. 24, 2022 & Kai & Added problem section\\
+& Sept. 24, 2022 & Alyssa & Added inputs and outputs, stakeholders, environment\\
+& Sept. 25, 2022 & Ethan & Added goals and stretch goals\\
+& Sept. 26, 2022 & Chris & Differentiating inputs and outputs for automotive shop owners and employees\\
+Rev 0 & Sept. 26, 2022 & All  & Revision 0\\
+Rev 1 & March 30, 2023 & Alyssa & Minor changes to Inputs and Outputs based on MVP, modification of goal content based on feedback\\
+Rev 1 & April 5, 2023 & All & Revision 1\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Problem Statement}
+
+\wss{You should check your problem statement with the
+\href{https://github.com/smiths/capTemplate/blob/main/docs/Checklists/ProbState-Checklist.pdf}
+{problem statement checklist}.}
+\wss{You can change the section headings, as long as you include the required information.}
+
+\subsection{Problem}
+
+Automobile maintenance and repairs are an unavoidable and recurring part of any
+car owner's experience. Despite its ubiquity, acquiring professional auto 
+service remains a time-consuming and hassle-prone process. Without a systematic
+procedure, this process consists of a number of scattered and repetitive tasks,
+beginning with finding local providers including mechanics, tire shops, and 
+body shops through traditional means such as a search engine, with little
+assurance of the trustworthiness or service quality of the providers in the 
+search results.\\
+
+\noindent After obtaining a list of service providers, customers are required
+to contact each service professional separately, repeatedly describing the same
+problems in order to receive a quote. Furthermore, different providers may have
+different availability. Scheduling a time preferred by the customer at
+available auto service providers, therefore, require further communication with
+multiple providers through methods such as phone or in-person visits, costing
+additional time and effort.
+
+\subsection{Inputs and Outputs}
+
+\wss{Characterize the problem in terms of ``high level'' inputs and outputs.  
+Use abstraction so that you can avoid details.}
+
+\subsubsection{Inputs of the automotive shop employees}
+\begin{enumerate}
+    \item Creating an account for the employee/signing into an account.
+    \item Creating a profile for the employee with their information.
+    \item Adding an automotive shop group to their account by accepting an invitation.
+    \item Adding the employee's availability to the appointments menu.
+    \item Creating an appointment and work order to service a vehicle.
+    \item Searching for pending quotes for vehicle servicing that have been requested by customers.
+    \item Adding an optional chat with a customer to discuss further details.
+\end{enumerate}
+
+\subsubsection{Outputs to the automotive shop employees}
+\begin{enumerate}
+    \item The employee will be able to access features specific to their associated automotive shop.
+    \item A list view of the shop's information.
+    \item A calendar view of the availability of the shop and its employees.
+    \item A searchable list of a shop's provided services.
+    \item An email notification confirming the creation of an appointment; removing the time slot from the calendar.
+    \item A list of quote requests received from customers looking to service their vehicle and a chat with them if initiated.
+\end{enumerate}
+
+\subsubsection{Inputs of the customers}
+\begin{enumerate}
+    \item Looking up a specific automotive shop.
+    \item Requesting a quote request to service a vehicle, what the issue is, further descriptions, etc.
+    \item Receiving a scheduled appointment confirmation once an automotive shop has approved and confirmed their quote request.
+\end{enumerate}
+
+\subsubsection{Outputs to the customers}
+\begin{enumerate}
+    \item A searchable list of automotive shops that are using the application.
+    \item A list showing the available automotive shops that can service the vehicle's issue.
+    \item An email notification confirming the creation of an appointment from the shop.
+\end{enumerate}
+
+\subsubsection{Inputs of the automotive shop owner}
+\begin{enumerate}
+    \item Creating an account for the shop owner/signing in.
+    \item Creating a profile for the shop owner containing their shop information.
+    \item Adding new employees that work at the automotive shop.
+    \item Adding the shop's availability to the appointments menu.
+    \item Adding the shop's services provided.
+    \item Creating an appointment and work order to service a vehicle.
+    \item Searching for pending quote requests for vehicle servicing that have been requested by customers.
+    \item Adding an optional chat with a customer to discuss further details.
+\end{enumerate}
+
+\subsubsection{Outputs to the automotive shop owner}
+\begin{enumerate}
+    \item An editable profile view of the shop owner's automotive shop information.
+    \item An editable, searchable list of the shop's employee accounts to manage.
+    \item A calendar view of the availability of the shop and its employees.
+    \item An email notification confirming the creation of an appointment; removing the time slot from the calendar.
+    \item An editable, searchable list of a shop's provided services.
+    \item A searchable list of quote requests received from customers looking to service their vehicle and a chat with them if initiated.
+    \item An editable, searchable list of a shop's current work orders.
+\end{enumerate}
+
+\subsection{Stakeholders}
+
+Stakeholders for this project include:
+\begin{itemize}
+    \item Team 31, the developers of the application
+    \item Project supervisor Nabil Ibrahim
+    \item Dr. Spencer Smith
+    \item SFWRENG 4G06 TAs
+    \item Automotive shop owners
+    \item Automotive shop employees
+    \item Customers/vehicle owners
+\end{itemize}
+
+\subsection{Environment}
+
+\wss{Hardware and software}
+
+\noindent Because it is requested that the final product be a progressive web
+application, the application will be compatible with both mobile (cell phones
+and tablets) and desktop hardware devices. The application is also to be
+designed with the expectation that users may not be very tech savvy, so all
+popular and default browsers, including but not limited to Google Chrome,
+Mozilla FireFox, Microsoft Edge, and Safari, on both mobile and desktop
+devices, will support the application software.\\
+
+\noindent For the deployment hardware, the app is expected to work on most
+modern computing platforms as it will be in a Docker container. Moreover, the
+Docker application will be scalable with the available computation resources in
+any given instance.
+
+\section{Goals}
+
+%-Redefine problem statement into high level goals
+%\\-Selling points for your product
+%\\-Related to technical advantages of your product
+%\\-Goals should be measurable
+%\\-Usually around 5 goals
+%\\-Explain goals that are not obvious
+
+\begin{enumerate}
+    \item Provide a vehicle owner with a straightforward start to finish experience getting their car serviced. This would start with the account creation process and the application will guide the user on the steps they need to take to create quote requests with any desired automotive shop.
+    \item Allow automotive shop owners to more effectively use and manage their employee resources. The application should allow for shop owners to view their employees' availabilities as well as their current appointments booked.
+    \item Simplify administrative tasks for shops like work order management, invoice creation and appointment scheduling.
+    \item Streamline client-business communication and create flexible interactions between vehicle owners and automotive shops. This might include a chat feature so both parties can communicate before accepting a quote and booking an appointment, and a notification system to alert users when other parties have made updates to quote requests or appointments.
+    \item Provide vehicle owners with detailed information about the types of services available, in addition to the service providers who offer them. Vehicle owners should be able to view a detailed shop lookup page to navigate local automotive shops that offer the services they require on their vehicle.
+\end{enumerate}
+
+\section{Stretch Goals}
+
+\begin{enumerate}
+    \item Assist vehicle owners in self-diagnosing their car before going in for a service. If the vehicle owner provides a detailed description of what is wrong with their car, the application could suggest what might be wrong with the car and provide appropriate services. Having a chat feature to chat with potential automotive shops could assist in diagnosing the issue before booking an appointment with an automotive shop.
+    \item Help a vehicle owner maintain their car using periodic service reminders. This could either be in the form of the automotive shop they use sending them manual reminders, or the system could automatically send them these reminders based on when their last appointment occurred.
+    \item Allow shop owners to manage and service entire fleets of vehicles. The application will assist shop owners in keeping track of all quotes, appointments, and work orders as well as employees and their schedules to allow for better organization and maximum efficiency.
+\end{enumerate}
+
+\end{document}

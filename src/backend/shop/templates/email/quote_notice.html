@@ -1,0 +1,26 @@
+{% load i18n %}
+
+{% block subject %}
+New Quote Request on Sayyara from {{ user.get_username }}
+{% endblock subject %}
+
+{% block text_body %}
+{% blocktrans %}A new quote request has been posted by {{ user.get_username }} ({{ user.email }}){% endblocktrans %}
+
+{% trans "Quote link:" %}
+http://localhost/quotes?quoteId={{quote.id}}
+
+
+{% blocktrans %}The Sayyara team{% endblocktrans %}
+{% endblock text_body %}
+
+{% block html_body %}
+<p>A new quote request has been posted by {{ user.get_username }} ({{ user.email }})</p>
+<hr/>
+
+Click <a href="http://localhost/quotes?quoteId={{quote.id}}">here</a> to view the quote
+
+
+<br>
+<p>{% blocktrans %}The Sayyara team{% endblocktrans %}</p>
+{% endblock html_body %}

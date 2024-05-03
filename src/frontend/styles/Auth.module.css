@@ -1,0 +1,9 @@
+.lockIcon {
+    color: white;
+    border-radius: 50%;
+}
+
+.loginContainer {
+    margin: 50px auto;
+    max-width: 600px;
+}

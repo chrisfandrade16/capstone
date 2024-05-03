@@ -1,0 +1,2917 @@
+
+openapi: 3.0.1
+info:
+  title: Sayyara API
+  description: API Explorer for Sayyara
+  termsOfService: https://localhost/
+  contact:
+    email: example@example.com
+  license:
+    name: Closed License
+  version: v1
+servers:
+  - url: http://localhost/api
+security:
+  - Bearer: []
+paths:
+  /account/{id}:
+    get:
+      tags:
+        - Profile
+      description: Returns the profile details of an account
+      operationId: account_read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content: {}
+    put:
+      tags:
+        - Profile
+      description: Update a profile
+      operationId: account_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileUpdate'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileUpdate'
+      x-codegen-request-body-name: data
+  /affiliated/{id}:
+    get:
+      tags:
+        - Quote
+      description: >-
+        Returns the first (should be the only) shop affiliated with a user
+        (owner/employee)
+      operationId: affiliated_read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content: {}
+  /appointments/:
+    get:
+      tags:
+        - Appointment
+      operationId: appointments_list
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppointmentDetail'
+    post:
+      tags:
+        - Appointment
+      description: Create a new appointment
+      operationId: appointments_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+      x-codegen-request-body-name: data
+  /appointments/{id}:
+    get:
+      tags:
+        - Appointment
+      operationId: appointments_read
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this appointment.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppointmentDetail'
+    put:
+      tags:
+        - Appointment
+      description: Update a given appointment
+      operationId: appointments_update
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this appointment.
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+      x-codegen-request-body-name: data
+    delete:
+      tags:
+        - Appointment
+      operationId: appointments_delete
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this appointment.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: ''
+          content: {}
+  /auth/jwt/create/:
+    post:
+      tags:
+        - auth
+      description: >-
+        Takes a set of user credentials and returns an access and refresh JSON
+        web
+
+        token pair to prove the authentication of those credentials.
+      operationId: auth_jwt_create_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenObtainPair'
+      x-codegen-request-body-name: data
+  /auth/jwt/refresh/:
+    post:
+      tags:
+        - auth
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      operationId: auth_jwt_refresh_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+      x-codegen-request-body-name: data
+  /auth/jwt/verify/:
+    post:
+      tags:
+        - auth
+      description: |-
+        Takes a token and indicates if it is valid.  This view provides no
+        information about a token's fitness for a particular use.
+      operationId: auth_jwt_verify_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenVerify'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenVerify'
+      x-codegen-request-body-name: data
+  /auth/register/:
+    post:
+      tags:
+        - Profile
+      description: Register an account
+      operationId: auth_register_create
+      responses:
+        '201':
+          description: ''
+          content: {}
+  /auth/users/:
+    get:
+      tags:
+        - auth
+      operationId: auth_users_list
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      tags:
+        - auth
+      operationId: auth_users_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCreate'
+      x-codegen-request-body-name: data
+  /auth/users/activation/:
+    post:
+      tags:
+        - auth
+      operationId: auth_users_activation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Activation'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Activation'
+      x-codegen-request-body-name: data
+  /auth/users/me/:
+    get:
+      tags:
+        - auth
+      operationId: auth_users_me_read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    put:
+      tags:
+        - auth
+      operationId: auth_users_me_update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      x-codegen-request-body-name: data
+    delete:
+      tags:
+        - auth
+      operationId: auth_users_me_delete
+      responses:
+        '204':
+          description: ''
+          content: {}
+    patch:
+      tags:
+        - auth
+      operationId: auth_users_me_partial_update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      x-codegen-request-body-name: data
+  /auth/users/resend_activation/:
+    post:
+      tags:
+        - auth
+      operationId: auth_users_resend_activation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendEmailReset'
+      x-codegen-request-body-name: data
+  /auth/users/reset_password/:
+    post:
+      tags:
+        - auth
+      operationId: auth_users_reset_password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendEmailReset'
+      x-codegen-request-body-name: data
+  /auth/users/reset_password_confirm/:
+    post:
+      tags:
+        - auth
+      operationId: auth_users_reset_password_confirm
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordResetConfirm'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PasswordResetConfirm'
+      x-codegen-request-body-name: data
+  /auth/users/reset_username/:
+    post:
+      tags:
+        - auth
+      operationId: auth_users_reset_username
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendEmailReset'
+      x-codegen-request-body-name: data
+  /auth/users/reset_username_confirm/:
+    post:
+      tags:
+        - auth
+      operationId: auth_users_reset_username_confirm
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsernameResetConfirm'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsernameResetConfirm'
+      x-codegen-request-body-name: data
+  /auth/users/set_password/:
+    post:
+      tags:
+        - auth
+      operationId: auth_users_set_password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetPassword'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetPassword'
+      x-codegen-request-body-name: data
+  /auth/users/set_username/:
+    post:
+      tags:
+        - auth
+      operationId: auth_users_set_username
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetUsername'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetUsername'
+      x-codegen-request-body-name: data
+  /auth/users/{id}/:
+    get:
+      tags:
+        - auth
+      operationId: auth_users_read
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this user.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    put:
+      tags:
+        - auth
+      operationId: auth_users_update
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this user.
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      x-codegen-request-body-name: data
+    delete:
+      tags:
+        - auth
+      operationId: auth_users_delete
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this user.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: ''
+          content: {}
+    patch:
+      tags:
+        - auth
+      operationId: auth_users_partial_update
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this user.
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      x-codegen-request-body-name: data
+  /auth/validate_reset/:
+    post:
+      tags:
+        - auth
+      operationId: auth_validate_reset_password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UidAndToken'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UidAndToken'
+      x-codegen-request-body-name: data
+  /availability/{employee}:
+    get:
+      tags:
+        - Availability
+      description: Get the availability of a given employee
+      operationId: availability_list
+      parameters:
+        - name: employee
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailabileSlotsSerializzer'
+  /employee/{employee}/availability:
+    get:
+      tags:
+        - Availability
+      description: List all availability schedules for a given user
+      operationId: employee_availability_list
+      parameters:
+        - name: employee
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeAvailability'
+    post:
+      tags:
+        - Availability
+      description: Create or update the availability of a given employee
+      operationId: employee_availability_create
+      parameters:
+        - name: employee
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeAvailability'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeAvailability'
+      x-codegen-request-body-name: data
+  /employee/{employee}/availability/{id}:
+    get:
+      tags:
+        - Availability
+      description: Get the availability of a given employee
+      operationId: employee_availability_read
+      parameters:
+        - name: employee
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: A unique integer value identifying this employee availability.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeAvailability'
+    put:
+      tags:
+        - Availability
+      description: Update the availability of a given employee
+      operationId: employee_availability_update
+      parameters:
+        - name: employee
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: A unique integer value identifying this employee availability.
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeAvailability'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeAvailability'
+      x-codegen-request-body-name: data
+    delete:
+      tags:
+        - Availability
+      description: Delete the availability of a given employee
+      operationId: employee_availability_delete
+      parameters:
+        - name: employee
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: A unique integer value identifying this employee availability.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: ''
+          content: {}
+  /employee/{employee}/reservation:
+    post:
+      tags:
+        - Reservations
+      description: Create or update the reservations of a given employee
+      operationId: employee_reservation_create
+      parameters:
+        - name: employee
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeReservationCreate'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeReservation'
+      x-codegen-request-body-name: data
+  /employee/{employee}/reservation/{id}:
+    get:
+      tags:
+        - Reservations
+      description: Get the reservations of a given employee
+      operationId: employee_reservation_read
+      parameters:
+        - name: employee
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: A UUID string identifying this employee reservation.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeReservation'
+    put:
+      tags:
+        - Reservations
+      description: Update the reservations of a given employee
+      operationId: employee_reservation_update
+      parameters:
+        - name: employee
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: A UUID string identifying this employee reservation.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeReservation'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeReservation'
+      x-codegen-request-body-name: data
+    delete:
+      tags:
+        - Reservations
+      description: Delete the reservations of a given employee
+      operationId: employee_reservation_delete
+      parameters:
+        - name: employee
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: A UUID string identifying this employee reservation.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: ''
+          content: {}
+  /employee/{employee}/reservations:
+    get:
+      tags:
+        - Reservations
+      description: List the reservations of a given employee
+      operationId: employee_reservations_list
+      parameters:
+        - name: employee
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeReservation'
+  /employees/{id}:
+    get:
+      tags:
+        - Profile
+      description: Get a shop's employee accounts
+      operationId: employees_read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content: {}
+    put:
+      tags:
+        - Profile
+      description: Update an employee account
+      operationId: employees_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content: {}
+    post:
+      tags:
+        - Profile
+      description: Activate an employee account
+      operationId: employees_create
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: ''
+          content: {}
+    delete:
+      tags:
+        - Profile
+      description: Delete an employee account
+      operationId: employees_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: ''
+          content: {}
+  /makes/:
+    get:
+      tags:
+        - Makes
+      operationId: makes_list
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Make'
+  /makes/{id}/:
+    get:
+      tags:
+        - Makes
+      operationId: makes_read
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this make.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Make'
+  /msgs/{id}:
+    get:
+      tags:
+        - Messaging
+      description: Get conversation
+      operationId: msgs_read
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this message.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+    put:
+      tags:
+        - Messaging
+      description: Edit a given message
+      operationId: msgs_update
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this message.
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+      x-codegen-request-body-name: data
+    post:
+      tags:
+        - Messaging
+      description: Create a new message
+      operationId: msgs_create
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this message.
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+      x-codegen-request-body-name: data
+    delete:
+      tags:
+        - Messaging
+      description: Delete a given message
+      operationId: msgs_delete
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this message.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: ''
+          content: {}
+  /msgs/{id}/notify:
+    get:
+      tags:
+        - Messaging
+      description: Set email notification status for a user
+      operationId: msgs_email_notify
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this message.
+          required: true
+          schema:
+            type: integer
+        - name: enabled
+          in: query
+          description: toggle status of email subscription
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+  /quote:
+    post:
+      tags:
+        - Quote
+      description: Create a new quote
+      operationId: quote_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Quote'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+      x-codegen-request-body-name: data
+  /quote/request/:
+    post:
+      tags:
+        - Quote
+      description: Create a new quote request
+      operationId: quote_request_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuoteRequest'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteRequest'
+      x-codegen-request-body-name: data
+  /quote/request/{id}:
+    get:
+      tags:
+        - Quote
+      operationId: quote_request_read
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this quote request.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteRequest'
+    put:
+      tags:
+        - Quote
+      description: Update a given quote request
+      operationId: quote_request_update
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this quote request.
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuoteRequest'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteRequest'
+      x-codegen-request-body-name: data
+    delete:
+      tags:
+        - Quote
+      operationId: quote_request_delete
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this quote request.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: ''
+          content: {}
+  /quote/requests/:
+    get:
+      tags:
+        - Quote
+      operationId: quote_requests_list
+      parameters:
+        - name: customer
+          in: query
+          description: Customer ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/QuoteRequestDetail'
+  /quote/{id}:
+    get:
+      tags:
+        - Quote
+      operationId: quote_read
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this quote.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+    put:
+      tags:
+        - Quote
+      description: Update a given quote
+      operationId: quote_update
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this quote.
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Quote'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+      x-codegen-request-body-name: data
+    delete:
+      tags:
+        - Quote
+      operationId: quote_delete
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this quote.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: ''
+          content: {}
+  /quote/{id}/service:
+    get:
+      tags:
+        - Quote
+      description: Returns a list of all modifiable services in a quote
+      operationId: quote_service_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content: {}
+    put:
+      tags:
+        - Quote
+      description: Update a given quote service
+      operationId: quote_service_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShopService'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShopService'
+      x-codegen-request-body-name: data
+    post:
+      tags:
+        - Quote
+      description: Create a new service for a quote
+      operationId: quote_service_create
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuoteService'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteService'
+      x-codegen-request-body-name: data
+    delete:
+      tags:
+        - Quote
+      description: Returns a list of all modifiable services in a quote
+      operationId: quote_service_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                service_id:
+                  type: string
+                  description: int
+        required: true
+      responses:
+        '204':
+          description: ''
+          content: {}
+      x-codegen-request-body-name: data
+  /quotes:
+    get:
+      tags:
+        - Quote
+      operationId: quotes_list
+      parameters:
+        - name: shop
+          in: query
+          description: Shop name or ID
+          schema:
+            type: string
+        - name: quote_request
+          in: query
+          description: Quote Request ID
+          schema:
+            type: string
+        - name: services
+          in: query
+          description: List of service IDs
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: One of (cancelled, pending, booked)
+          schema:
+            type: string
+        - name: priority
+          in: query
+          description: One of (low, medium, high)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/QuoteDetail'
+  /reserved/{employee}:
+    get:
+      tags:
+        - Reservations
+      description: List the reservations of a given employee
+      operationId: reserved_list
+      parameters:
+        - name: employee
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeReservation'
+  /service/:
+    get:
+      tags:
+        - Services
+      operationId: service_list
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Service'
+    post:
+      tags:
+        - Services
+      operationId: service_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Service'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+      x-codegen-request-body-name: data
+  /service/{id}/:
+    get:
+      tags:
+        - Services
+      operationId: service_read
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this service.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+    put:
+      tags:
+        - Services
+      operationId: service_update
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this service.
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Service'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+      x-codegen-request-body-name: data
+    delete:
+      tags:
+        - Services
+      operationId: service_delete
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this service.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: ''
+          content: {}
+    patch:
+      tags:
+        - Services
+      operationId: service_partial_update
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this service.
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Service'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+      x-codegen-request-body-name: data
+  /shop:
+    post:
+      tags:
+        - Shop
+      description: Create a new shop
+      operationId: shop_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Shop'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shop'
+      x-codegen-request-body-name: data
+  /shop/availability/{owner}:
+    get:
+      tags:
+        - shop
+      operationId: shop_availability_list
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content: {}
+  /shop/{id}:
+    get:
+      tags:
+        - Shop
+      operationId: shop_read
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this shop.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shop'
+    put:
+      tags:
+        - Shop
+      description: Update a given shop
+      operationId: shop_update
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this shop.
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Shop'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shop'
+      x-codegen-request-body-name: data
+    delete:
+      tags:
+        - Shop
+      operationId: shop_delete
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this shop.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: ''
+          content: {}
+  /shop/{shop}/services:
+    get:
+      tags:
+        - Shop
+      description: Returns a list of all services provided by a shop
+      operationId: shop_services_list
+      parameters:
+        - name: shop
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content: {}
+    put:
+      tags:
+        - Shop
+      description: Update a given shop service
+      operationId: shop_services_update
+      parameters:
+        - name: shop
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShopService'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShopService'
+      x-codegen-request-body-name: data
+    post:
+      tags:
+        - Shop
+      description: Create a new service for a given shop
+      operationId: shop_services_create
+      parameters:
+        - name: shop
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShopService'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShopService'
+      x-codegen-request-body-name: data
+    delete:
+      tags:
+        - Shop
+      description: Returns a list of all services provided by a shop
+      operationId: shop_services_delete
+      parameters:
+        - name: shop
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                service_id:
+                  type: string
+                  description: int
+        required: true
+      responses:
+        '204':
+          description: ''
+          content: {}
+      x-codegen-request-body-name: data
+  /shops:
+    get:
+      tags:
+        - Shop
+      operationId: shops_list
+      parameters:
+        - name: search
+          in: query
+          description: A search term.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Shop'
+  /vehicle:
+    post:
+      tags:
+        - Customer
+      description: Create a new vehicle
+      operationId: vehicle_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vehicle'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+      x-codegen-request-body-name: data
+  /vehicles/:
+    get:
+      tags:
+        - Customer
+      operationId: vehicles_list
+      parameters:
+        - name: search
+          in: query
+          description: A search term.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VehicleDetail'
+  /vehicles/owners:
+    get:
+      tags:
+        - Customer
+      operationId: vehicles_owners_list
+      parameters:
+        - name: search
+          in: query
+          description: A search term.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VehicleDetail'
+  /vehicles/{id}:
+    get:
+      tags:
+        - Customer
+      operationId: vehicles_read
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this vehicle.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+    put:
+      tags:
+        - Customer
+      description: Update a given vehicle
+      operationId: vehicles_update
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this vehicle.
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vehicle'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+      x-codegen-request-body-name: data
+    delete:
+      tags:
+        - Customer
+      operationId: vehicles_delete
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this vehicle.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: ''
+          content: {}
+  /workorder/:
+    get:
+      tags:
+        - WorkOrder
+      operationId: workorder_list
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkOrder'
+    post:
+      tags:
+        - WorkOrder
+      description: Create a new WorkOrder
+      operationId: workorder_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkOrder'
+        required: true
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkOrder'
+      x-codegen-request-body-name: data
+  /workorder/{id}:
+    get:
+      tags:
+        - WorkOrder
+      operationId: workorder_read
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this work order.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkOrder'
+    put:
+      tags:
+        - WorkOrder
+      description: Update a given WorkOrder
+      operationId: workorder_update
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this work order.
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkOrder'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkOrder'
+      x-codegen-request-body-name: data
+    delete:
+      tags:
+        - WorkOrder
+      operationId: workorder_delete
+      parameters:
+        - name: id
+          in: path
+          description: A unique integer value identifying this work order.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: ''
+          content: {}
+components:
+  schemas:
+    ProfileUpdate:
+      required:
+        - email
+        - first_name
+        - last_name
+      type: object
+      properties:
+        first_name:
+          title: First name
+          minLength: 1
+          type: string
+        last_name:
+          title: Last name
+          minLength: 1
+          type: string
+        email:
+          title: Email
+          minLength: 1
+          type: string
+        phone:
+          title: Phone
+          maxLength: 15
+          minLength: 1
+          pattern: ^\d{3}-\d{3}-\d{4}$
+          type: string
+          nullable: true
+        address:
+          title: Address
+          maxLength: 200
+          minLength: 1
+          type: string
+          nullable: true
+    ShopQuery:
+      required:
+        - name
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        name:
+          title: Name
+          maxLength: 255
+          minLength: 1
+          type: string
+    Customer:
+      required:
+        - email
+        - first_name
+        - last_name
+      type: object
+      properties:
+        first_name:
+          title: First name
+          minLength: 1
+          type: string
+        last_name:
+          title: Last name
+          minLength: 1
+          type: string
+        email:
+          title: Email
+          minLength: 1
+          type: string
+        phone:
+          title: Phone
+          maxLength: 15
+          minLength: 1
+          pattern: ^\d{3}-\d{3}-\d{4}$
+          type: string
+          nullable: true
+        address:
+          title: Address
+          maxLength: 200
+          minLength: 1
+          type: string
+          nullable: true
+    VehicleDetail:
+      required:
+        - make
+        - model
+        - year
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        make:
+          title: Make
+          minLength: 1
+          type: string
+        model:
+          title: Model
+          minLength: 1
+          type: string
+        year:
+          title: Year
+          maximum: 2147483647
+          minimum: -2147483648
+          type: integer
+        vin:
+          title: Vin
+          maxLength: 17
+          type: string
+        plate_number:
+          title: Plate number
+          maxLength: 10
+          type: string
+        owner:
+          $ref: '#/components/schemas/Customer'
+    Shop:
+      required:
+        - email
+        - name
+        - owner
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        name:
+          title: Name
+          maxLength: 255
+          minLength: 1
+          type: string
+        address:
+          title: Address
+          maxLength: 500
+          type: string
+        description:
+          title: Description
+          maxLength: 500
+          type: string
+        email:
+          title: Email
+          maxLength: 75
+          minLength: 1
+          type: string
+          format: email
+        phone:
+          title: Phone
+          maxLength: 15
+          minLength: 1
+          pattern: ^\d{3}-\d{3}-\d{4}$
+          type: string
+          nullable: true
+        hours:
+          title: Hours
+          maxLength: 255
+          minLength: 1
+          type: string
+          nullable: true
+        latitude:
+          title: Latitude
+          type: string
+          format: decimal
+          nullable: true
+        longitude:
+          title: Longitude
+          type: string
+          format: decimal
+          nullable: true
+        owner:
+          title: Owner
+          type: string
+        services:
+          uniqueItems: true
+          type: array
+          items:
+            type: integer
+        employees:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+    QuoteRequestDetail:
+      required:
+        - quote_set
+        - shop
+        - vehicle
+      type: object
+      properties:
+        id:
+          title: Id
+          type: integer
+          readOnly: true
+        customer:
+          $ref: '#/components/schemas/Customer'
+        description:
+          title: Description
+          maxLength: 500
+          type: string
+        part_preference:
+          title: Part preference
+          type: string
+          enum:
+            - any
+            - new
+            - used
+            - oem
+            - aftermarket
+        vehicle:
+          $ref: '#/components/schemas/VehicleDetail'
+        shop:
+          $ref: '#/components/schemas/Shop'
+        availability:
+          title: Availability
+          maxLength: 500
+          type: string
+        created_at:
+          title: Created at
+          type: string
+          format: date-time
+        quote_set:
+          uniqueItems: true
+          type: array
+          items:
+            type: integer
+    QuoteService:
+      required:
+        - name
+        - quote
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        name:
+          title: Name
+          maxLength: 255
+          minLength: 1
+          type: string
+        description:
+          title: Description
+          maxLength: 500
+          type: string
+          nullable: true
+        price:
+          title: Price
+          type: string
+          format: decimal
+          nullable: true
+        est_time:
+          title: Est time
+          type: string
+        comment:
+          title: Comment
+          maxLength: 1024
+          type: string
+          nullable: true
+        quote:
+          title: Quote
+          type: integer
+    QuoteDetail:
+      required:
+        - quote_request
+        - services
+        - shop
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        shop:
+          $ref: '#/components/schemas/ShopQuery'
+        quote_request:
+          $ref: '#/components/schemas/QuoteRequestDetail'
+        priority:
+          title: Priority
+          type: string
+          enum:
+            - low
+            - medium
+            - high
+        status:
+          title: Status
+          type: string
+          enum:
+            - booked
+            - pending
+            - canceled
+        message:
+          title: Message
+          maxLength: 500
+          type: string
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuoteService'
+        buid:
+          title: Buid
+          type: string
+          format: uuid
+          readOnly: true
+        comments:
+          title: Comments
+          type: integer
+          nullable: true
+    AppointmentDetail:
+      required:
+        - customer
+        - price_estimate
+        - quote
+        - reservation
+        - shop
+        - time_estimate
+        - title
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        title:
+          title: Title
+          maxLength: 100
+          minLength: 1
+          type: string
+        description:
+          title: Description
+          maxLength: 500
+          type: string
+        reservation:
+          title: Reservation
+          type: string
+          format: uuid
+        time_estimate:
+          title: Time estimate
+          type: string
+        quote:
+          $ref: '#/components/schemas/QuoteDetail'
+        price_estimate:
+          title: Price estimate
+          type: string
+          format: decimal
+        message:
+          title: Message
+          maxLength: 500
+          type: string
+        shop:
+          $ref: '#/components/schemas/ShopQuery'
+        customer:
+          $ref: '#/components/schemas/Customer'
+    Appointment:
+      required:
+        - price_estimate
+        - quote
+        - reservation
+        - time_estimate
+        - title
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        created_at:
+          title: Created at
+          type: string
+          format: date-time
+          readOnly: true
+        title:
+          title: Title
+          maxLength: 100
+          minLength: 1
+          type: string
+        description:
+          title: Description
+          maxLength: 500
+          type: string
+        time_estimate:
+          title: Time estimate
+          type: string
+        price_estimate:
+          title: Price estimate
+          type: string
+          format: decimal
+        message:
+          title: Message
+          maxLength: 500
+          type: string
+        quote:
+          title: Quote
+          type: integer
+        reservation:
+          title: Reservation
+          type: string
+          format: uuid
+    TokenObtainPair:
+      required:
+        - password
+        - username
+      type: object
+      properties:
+        username:
+          title: Username
+          minLength: 1
+          type: string
+        password:
+          title: Password
+          minLength: 1
+          type: string
+    TokenRefresh:
+      required:
+        - refresh
+      type: object
+      properties:
+        refresh:
+          title: Refresh
+          minLength: 1
+          type: string
+        access:
+          title: Access
+          type: string
+          readOnly: true
+    TokenVerify:
+      required:
+        - token
+      type: object
+      properties:
+        token:
+          title: Token
+          minLength: 1
+          type: string
+    User:
+      type: object
+      properties:
+        email:
+          title: Email address
+          maxLength: 254
+          type: string
+          format: email
+        id:
+          title: Id
+          type: integer
+          readOnly: true
+        username:
+          title: Username
+          minLength: 1
+          type: string
+          description: >-
+            Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+    UserCreate:
+      required:
+        - password
+        - username
+      type: object
+      properties:
+        email:
+          title: Email address
+          maxLength: 254
+          type: string
+          format: email
+        username:
+          title: Username
+          maxLength: 150
+          minLength: 1
+          pattern: ^[\w.@+-]+$
+          type: string
+          description: >-
+            Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+        id:
+          title: Id
+          type: integer
+          readOnly: true
+        password:
+          title: Password
+          minLength: 1
+          type: string
+    Activation:
+      required:
+        - token
+        - uid
+      type: object
+      properties:
+        uid:
+          title: Uid
+          minLength: 1
+          type: string
+        token:
+          title: Token
+          minLength: 1
+          type: string
+    SendEmailReset:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          title: Email
+          minLength: 1
+          type: string
+          format: email
+    PasswordResetConfirm:
+      required:
+        - new_password
+        - token
+        - uid
+      type: object
+      properties:
+        uid:
+          title: Uid
+          minLength: 1
+          type: string
+        token:
+          title: Token
+          minLength: 1
+          type: string
+        new_password:
+          title: New password
+          minLength: 1
+          type: string
+    UsernameResetConfirm:
+      required:
+        - new_username
+      type: object
+      properties:
+        new_username:
+          title: Username
+          maxLength: 150
+          minLength: 1
+          pattern: ^[\w.@+-]+$
+          type: string
+          description: >-
+            Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+    SetPassword:
+      required:
+        - current_password
+        - new_password
+      type: object
+      properties:
+        new_password:
+          title: New password
+          minLength: 1
+          type: string
+        current_password:
+          title: Current password
+          minLength: 1
+          type: string
+    SetUsername:
+      required:
+        - current_password
+        - new_username
+      type: object
+      properties:
+        current_password:
+          title: Current password
+          minLength: 1
+          type: string
+        new_username:
+          title: Username
+          maxLength: 150
+          minLength: 1
+          pattern: ^[\w.@+-]+$
+          type: string
+          description: >-
+            Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+    UidAndToken:
+      required:
+        - token
+        - uid
+      type: object
+      properties:
+        uid:
+          title: Uid
+          minLength: 1
+          type: string
+        token:
+          title: Token
+          minLength: 1
+          type: string
+    AvailabileSlotsSerializzer:
+      required:
+        - employee
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        employee:
+          title: Employee
+          type: string
+        free_slots:
+          title: Free slots
+          type: string
+          readOnly: true
+    EmployeeAvailability:
+      required:
+        - employee
+        - end_time
+        - recurrence
+        - start_date
+        - start_time
+        - timezone
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        employee:
+          title: Employee
+          type: string
+        start_date:
+          title: Start date
+          type: string
+          format: date
+        start_time:
+          title: Start time
+          type: string
+        end_time:
+          title: End time
+          type: string
+        recurrence:
+          title: Recurrence
+          type: string
+        timezone:
+          title: Timezone
+          minLength: 1
+          type: string
+    EmployeeReservationCreate:
+      required:
+        - employee
+      type: object
+      properties:
+        time:
+          title: Primary time_slot
+          type: string
+          format: date-time
+          nullable: true
+        duration:
+          title: Duration
+          type: string
+        state:
+          title: State
+          type: string
+          enum:
+            - UNC
+            - DCL
+            - EXP
+            - CNF
+            - CMP
+            - CAN
+            - MIS
+        employee:
+          title: Employee
+          type: integer
+    EmployeeReservation:
+      required:
+        - schedule
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        add_date:
+          title: Add date
+          type: string
+          format: date-time
+          readOnly: true
+        edit_date:
+          title: Edit date
+          type: string
+          format: date-time
+          readOnly: true
+        duration:
+          title: Duration
+          type: string
+        padding:
+          title: Padding
+          type: string
+        time:
+          title: Primary time_slot
+          type: string
+          format: date-time
+          nullable: true
+        time_secondary:
+          title: Secondary time_slot
+          type: string
+          format: date-time
+          nullable: true
+        state:
+          title: State
+          type: string
+          enum:
+            - UNC
+            - DCL
+            - EXP
+            - CNF
+            - CMP
+            - CAN
+            - MIS
+        schedule:
+          title: Schedule
+          type: string
+    VehicleModel:
+      required:
+        - name
+        - vehicle_type
+        - years
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        name:
+          title: Name
+          maxLength: 255
+          minLength: 1
+          type: string
+        vehicle_type:
+          title: Vehicle type
+          type: string
+          enum:
+            - motorcycle
+            - trailer
+            - car
+            - truck
+            - bus
+        years:
+          type: array
+          items:
+            minLength: 1
+            type: string
+    Make:
+      required:
+        - models
+        - name
+        - slug
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        name:
+          title: Name
+          maxLength: 255
+          minLength: 1
+          type: string
+        slug:
+          title: Slug
+          maxLength: 50
+          minLength: 1
+          pattern: ^[-a-zA-Z0-9_]+$
+          type: string
+          format: slug
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/VehicleModel'
+    Message:
+      required:
+        - message
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        message:
+          title: Message
+          maxLength: 1024
+          minLength: 1
+          type: string
+    Quote:
+      required:
+        - quote_request
+        - services
+        - shop
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        shop:
+          title: Shop
+          type: integer
+        quote_request:
+          title: Quote request
+          type: integer
+        priority:
+          title: Priority
+          type: string
+          enum:
+            - low
+            - medium
+            - high
+        status:
+          title: Status
+          type: string
+          enum:
+            - booked
+            - pending
+            - canceled
+        message:
+          title: Message
+          maxLength: 500
+          type: string
+        services:
+          uniqueItems: true
+          type: array
+          items:
+            type: integer
+        comments:
+          title: Comments
+          type: integer
+          nullable: true
+    QuoteRequest:
+      required:
+        - customer
+      type: object
+      properties:
+        customer:
+          title: Customer
+          type: string
+        description:
+          title: Description
+          maxLength: 500
+          type: string
+        part_preference:
+          title: Part preference
+          type: string
+          enum:
+            - any
+            - new
+            - used
+            - oem
+            - aftermarket
+        vehicle:
+          title: Vehicle
+          type: integer
+          nullable: true
+        shop:
+          title: Shop
+          type: integer
+          nullable: true
+        availability:
+          title: Availability
+          maxLength: 500
+          type: string
+        created_at:
+          title: Created at
+          type: string
+          format: date-time
+    ShopService:
+      required:
+        - service
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        service:
+          title: Service
+          type: integer
+        price:
+          title: Price
+          type: string
+          format: decimal
+          nullable: true
+        est_time:
+          title: Est time
+          type: string
+    Service:
+      required:
+        - name
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        name:
+          title: Name
+          maxLength: 255
+          minLength: 1
+          type: string
+        description:
+          title: Description
+          maxLength: 500
+          type: string
+          nullable: true
+    Vehicle:
+      required:
+        - make
+        - model
+        - owner
+        - year
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        make:
+          title: Make
+          type: integer
+        model:
+          title: Model
+          type: integer
+        year:
+          title: Year
+          maximum: 2147483647
+          minimum: -2147483648
+          type: integer
+        vin:
+          title: Vin
+          maxLength: 17
+          type: string
+        plate_number:
+          title: Plate number
+          maxLength: 10
+          type: string
+        owner:
+          title: Owner
+          type: string
+    WorkOrder:
+      required:
+        - services
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        appointment:
+          type: array
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/Appointment'
+        status:
+          title: Status
+          type: string
+          enum:
+            - complete
+            - cancelled
+            - pending
+        created_at:
+          title: Created at
+          type: string
+          format: date-time
+        services:
+          uniqueItems: true
+          type: array
+          items:
+            type: integer
+        work_description:
+          title: Work description
+          maxLength: 500
+          type: string
+        total_price:
+          title: Total price
+          type: string
+          format: decimal
+          nullable: true
+        note:
+          title: Note
+          maxLength: 500
+          type: string
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      name: Authorization
+      in: header

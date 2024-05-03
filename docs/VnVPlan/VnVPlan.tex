@@ -1,0 +1,1374 @@
+\documentclass[12pt, titlepage]{article}
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{geometry}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage{float}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage[round]{natbib}
+
+\input{../Comments}
+\input{../Common}
+
+\begin{document}
+
+\title{Project Title: System Verification and Validation Plan for \progname{}} 
+\author{\authname}
+\date{\today}
+	
+\maketitle
+
+\pagenumbering{roman}
+
+\section*{Revision History}
+
+\begin{table}[hp]
+    \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+        \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+        \midrule
+        Oct. 29, 2022 & Rev 0 & Nonfunctional tests for SRS sections 10.2.3-10.2.5\\
+        Oct. 31, 2022 & Rev 0 & Authentication and profile system tests\\
+        Nov. 2, 2022  & Rev 0 & Tests Defined and Usability Survey Questions Added for SRS Sections 10.2.1 and 10.2.2\\
+        Nov. 2, 2022  & Rev 0 & Revision 0\\
+        April 5, 2022 & Rev 1 & Revision 1\\
+        \bottomrule
+    \end{tabularx}
+    \caption{Revision History}
+\end{table}
+
+\newpage
+
+\tableofcontents
+
+\listoftables
+
+\newpage
+
+\section{Symbols, Abbreviations and Acronyms}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[h!]
+    \begin{tabularx}{\textwidth}{|l|X|}
+    \hline
+    Term & Definition\\ 
+    \hline
+    Automated Testing & Testing that is performed automatically and is done by a tool \\ \hline
+    Dynamic Testing & Tests that are performed with the actual system running \\ \hline
+    Functional Testing & Tests that validate the system against the requirements \\ \hline
+    Manual Testing & Tests that are performed by hand by a user as opposed to automated testing  \\ \hline
+    Record-And-Playback Testing & Tests that are performed through recording a user's activity and then imitating it (form of automated testing) \\ \hline
+    Static Testing & Tests that are performed without executing the actual system \\ \hline
+    Stress Testing & Tests that are performed to determine the robustness of the system \\ \hline
+    Structural Testing & Tests that are performed using the internal design of the system \\ \hline
+    PR & Pull request \\ \hline
+    UI & User Interface \\ \hline
+    DDoS & Distributed Denial-of-service; when multiple systems flood the bandwidth or resources of a targeted system \\ \hline
+    \end{tabularx}
+    \caption{Symbols, Abbreviations, and Acronyms}
+\end{table}
+
+\noindent This document provides the team's plans for the verification and validation of the Sayyara progressive web application. The document also establishes test cases for relevant functional and nonfunctional requirements.
+
+\section{General Information}
+
+\subsection{Summary}
+  
+The purpose of this VnV plan is to state the team's intentions for the verification and validation of the Sayyara progressive web application as well as document the test cases to evaluate the functional and nonfunctional requirements established in the SRS document. Unit testing will be added at a later date when the application is further along in development.
+
+\subsection{Objectives}
+  
+The purpose of the VnV plan is to ensure that we have sufficient coverage of testing for as many functional and nonfunctional requirements that require testing and can be tested. The VnV plan is also to ensure that the team builds confidence in not only building the correct software, but building the software correctly and to the satisfaction of stakeholders.
+
+\subsection{Relevant Documentation}
+  
+The development plan discusses relevant tools that we plan to use for testing and development of the Sayyara application. Section 4 of this VnV plan expands upon some of these discussed ideas as we have delved further into development and research of more relevant tools and frameworks.
+
+\noindent The functional and nonfunctional requirements referenced in section 5 of this VnV plan are cited directly from section 10 of the team's SRS document. The traceability matrices at the end of section 5 map the developed test cases to the relevant requirements from the SRS document.
+
+\section{Plan}
+
+In order to optimize the build, validation and test time on the final product, the project is split into two separate projects for the backend and frontend respectively.
+
+\noindent This is a cleaner method, as opposed to one large monolithic web application and allows for the team to split up work more efficiently. This approach also allows for the user and business logic to be decoupled and tested separately.
+
+\subsection{Verification and Validation Team}
+
+The team is split into two sub-teams responsible for the backend and frontend, and each member is assigned a role with respect to their commitments to the team below.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|l|ll|}
+        \hline
+                    & \multicolumn{2}{c|}{Role}                                      \\ \hline
+        Member      & \multicolumn{1}{l|}{Backend}             & Frontend            \\ \hline
+        Harsh       & \multicolumn{1}{l|}{Team Lead}           & Validation Lead     \\ \hline
+        Kai         & \multicolumn{1}{l|}{Test Lead}           & Implementation Lead \\ \hline
+        Chris       & \multicolumn{1}{l|}{Implementation Lead} & Tester              \\ \hline
+        Ethan       & \multicolumn{1}{l|}{Validation Lead}     & Developer           \\ \hline
+        Alyssa      & \multicolumn{1}{l|}{Tester}              & Team Lead           \\ \hline
+        Collin      & \multicolumn{1}{l|}{Developer}           & Test Lead           \\ \hline
+    \end{tabular}
+    \caption{Verification and Validation Team}
+\end{table}
+
+\subsection{SRS Verification Plan}
+
+We intend to utilize the SRS document as a reference to the product features being delivered, which will be tracked using the requirement short name identifier in the issues and PR's of said feature. This will ensure traceability of every PR back to the respective requirements. Moreover, the team will use ad hoc feedback from other reviewers like our project supervisor and their correspondents and the teams' peers.
+
+\subsection{Design Verification Plan}
+
+Part of the design verification will be done through automated test cases, which will be delivered in conjunction with any features. The repository hosting the project will also enforce strict delivery requirements for the quality and correctness of the code being delivered. 
+
+\subsection{Verification and Validation Plan Verification Plan}
+
+The VnV Verification Plan will involve a discussion among the team and the supervisor that includes the following topics:
+
+\begin{itemize}
+    \item Ensure each task has appropriate description, priority, due dates, and lead developer assigned.
+    \item Ensure that the VnV is integrated into the project management plan used by the supervisor to track progress.
+\end{itemize}
+
+\subsection{Implementation Verification Plan}
+
+This verification plan serves to address the objectives and requirements defined in the next section for the system tests. This plan serves as a guide for reviewing the internal specifications of the system so that all aspects of the system are accounted for. This plan should be carried out prior to unit testing to make sure the core functionality is present prior to deploying the system.
+ 
+\noindent The plan involves strict requirements for the code being delivered in TypeScript and Python to be linted and have test code for any features being delivered. For example, the PR for a notification system must include the test cases for the same, and those tests must pass to proceed with merging. Furthermore, we intend to have at least two code reviewers per PR, this way the team makes sure that the code is legible and up to the right standard of quality to be delivered into the project.
+
+\subsection{Automated Testing and Verification Tools}
+
+This project will heavily utilize automated testing and verification tools. While automated testing and verification tools were covered in the Development Plan, we have added testing and verification for the Django backend with unittest and autopep8 for linting. We will also need external geolocation tools such as an address generator and a distance between two addresses calculator. On top of this, we intend to utilize GitHub actions to build Docker images on demand to test, validate and publish the web application.
+
+\subsection{Software Validation Plan}
+
+The system will be tested on dummy data in the database that is loaded for every build using a collection of fixtures. This data will be constantly updated as new features get delivered, and may not represent the full spectrum of data we might see in the a real-world scenario. However, it provides a good baseline for the developers to test against until the project goes live.
+
+\noindent The supervisor will host review sessions along with the key stakeholders of automotive shop owners to evaluate the software throughout the build process. This is also where the feedback on implementation of specific tasks will be incorporated to improve the next iteration of the product.
+
+\section{System Test Description}
+	
+\subsection{Tests for Functional Requirements}
+The system tests for functional requirements cover the main functionality of the application as outlined in section 10.1 of the SRS.
+
+\subsubsection{Authentication}
+Authentication tests corresponds to the requirements related to user account authentication under section 10.1.1 of the SRS.
+		
+\paragraph{Account Creation}
+
+\begin{enumerate}
+
+\item{FR-AR1-1\\}
+
+Control: Manual, dynamic
+					
+Initial State: Empty account registration form is displayed
+					 
+Input: Unused username and valid password of length 8
+					
+Output: Displays successful registration, redirect to login view. New account created in user database
+
+Test Case Derivation: Valid account name and password should successfully complete account registration.
+					
+How test will be performed: Manually verify that using a previously unused username and valid password redirects to a success display, then verify using pgAdmin that an row with corresponding username is created in the database.
+
+\item{FR-AR1-2\\}
+
+Control: Manual, dynamic
+					
+Initial State: Empty account registration form is displayed
+					
+Input: A username that already exists in the database (e.g. admin) and any password
+					
+Output: Displays username error, no new user created in database
+
+Test Case Derivation: New accounts should not be created using existing user name.
+					
+How test will be performed: See method for FR-AR1-1, verify by inspection that row with username in database is not duplicated or modified.
+
+\item{FR-AR1-3\\}
+
+Control: Manual, dynamic
+					
+Initial State: Empty account registration form is displayed
+					
+Input: An unused username and a set of invalid passwords (length below 7, number or alphabet only, no capitalization)
+					
+Output: Displays password error, no new user created in database
+
+Test Case Derivation: Invalid password should result in account registration failure and notification.
+					
+How test will be performed: See method for FR-AR1-2.
+
+\end{enumerate}
+
+\paragraph{Login Authentication}
+
+\begin{enumerate}
+
+\item{FR-AR2-1\\}
+
+Control: Automated, dynamic
+					
+Initial State: Empty login form is displayed
+					
+Input: Valid test username and password existing in database (TEST\_USER, TEST\_PW)
+					
+Output: Redirects to main user menu, returns authenticated token
+
+Test Case Derivation: Accessing the system with an existing account name with matching password should result in a successful login.
+					
+How test will be performed: Automatic end-to-end testing confirms that valid input redirects to the correct page, and that an authenticated token is received as a response upon form submission.
+
+\item{FR-AR2-2\\}
+
+Control: Automated, dynamic
+					
+Initial State: Empty login form is displayed
+					
+Input: Non-existing username with any password, and valid username with wrong password
+					
+Output: Displays login failure
+
+Test Case Derivation: Invalid login information should result in failure. No authenticated token should be provided for access to the rest of the application.
+					
+How test will be performed: See FR-AR2-1, ensure that no token is returned.
+
+\item{FR-AR2-3\\}
+
+Control: Automated, dynamic
+					
+Initial State: Backend host listening for API calls
+					
+Input: API calls to profile edit and password update services without authentication token
+					
+Output: Return 401 unauthorized access error
+
+Test Case Derivation: Unauthenticated users should not be able to access application functionality, especially modifying unauthorized information such as password and account profiles.
+					
+How test will be performed: A list of API calls to profile and password updates are made using CURL or similar commands, verify that all calls are refused with 401 error.
+
+\end{enumerate}
+
+\subsubsection{Account Profile}
+This set of tests cover business and user profile display and editing requirements outlined under sections 10.1.2 and 10.1.3 of the SRS.
+
+\paragraph{Profile Update}
+
+\begin{enumerate}
+
+\item{FR-PAR1-1\\}
+
+Control: Manual, dynamic
+					
+Initial State: Authenticated as business owner, business profile edit page is displayed with current description an contact information
+					
+Input: new business name, address, phone number, email, description
+					
+Output: Redirects to business profile page displaying updated details based on input
+
+Test Case Derivation: The supplied input should update each corresponding displayed business information correctly.
+					
+How test will be performed: Manual inspection of the updated business profile to ensure the new information matches input.
+
+\item{FR-PAR3-1\\}
+
+Control: Manual, dynamic
+					
+Initial State: Authenticated as customer, user profile edit page is displayed with current description and contact information
+					
+Input: name, owned vehicle make, model, year, contact information
+					
+Output: Redirects to user profile page displaying updated details based on input
+
+Test Case Derivation: The supplied input should update each corresponding displayed user information.
+					
+How test will be performed: See FR-PAR1-1, verify new information matches input.
+
+\end{enumerate}
+
+\paragraph{Employee Account Management}
+
+\begin{enumerate}
+
+\item{FR-PAR6-1\\}
+
+Control: Manual, dynamic
+					
+Initial State: Authenticated as business owner, employee with EMPLOYEE\_NAME exists in database, employees list is displayed
+					
+Input: EMPLOYEE\_NAME is entered in search field
+
+Output: Employees list view is filtered to display only the row containing EMPLOYEE\_NAME
+
+Test Case Derivation: Employees list should display all employees by default and filters to show only employees with matching name using the search input field.
+					
+How test will be performed: Manual inspection of the filtered employees list view to confirm only the row containing EMPLOYEE\_NAME is displayed.
+
+\item{FR-PAR7-1\\}
+
+Control: Manual, dynamic
+					
+Initial State: Authenticated as business owner, empty create employee form is displayed
+					
+Input: new employee name and email address
+
+Output: Employees list displaying new employee, email is sent to input address with randomized default password
+
+Test Case Derivation: Owners should be able to create employee accounts for new employees, and new account login is emailed to the employee email address.
+					
+How test will be performed: Manual inspection of the employees list view and email inbox to confirm successful employee creation, password generation and notification.
+
+\item{FR-PAR7-2\\}
+
+Control: Manual, dynamic
+					
+Initial State: Authenticated as business owner, employee with EMPLOYEE\_NAME exists in database, employees list is displayed
+					
+Input: delete employee button and confirm
+
+Output: View refreshes to display employees list minus deleted employee. Employee removed from authentication and profile database tables.
+
+Test Case Derivation: Owners should be able to remove employees from their business profile page.
+					
+How test will be performed: Manual inspection of the employees list view to confirm deletion, log in with deleted account information to ensure authentication failure.
+
+\end{enumerate}
+
+\subsubsection{Appointments}
+
+    This set of tests covers appointment requirements as outlined in section 10.1.4 of the SRS.
+
+    \paragraph{Change Shop Availability}
+        \begin{enumerate}
+            \item{FR-ApR1-1} \\ \\
+                Control: Automated, dynamic \par
+                Initial State: Authenticated as Shop Owner. \par
+                Input: New range of times where shop is available for appointments. \par
+                Output: Available hours for scheduling an appointment updated. \par
+                Test Case Derivation: Shop Owners need to be able to change their availability on the fly. \par
+                How test will be performed: Manual entry of new availability hours, and manual verification that these new hours are properly reflected. \par
+        \end{enumerate}
+
+    \paragraph{Appointment Creation} Relevant system requirements include ApR2 and ApR3.
+        \begin{enumerate}
+            % \item{FR-ApR2-1} \\ \\
+            %     Control: Automated, dynamic \par
+            %     Initial State: Authenticated as Vehicle Owner, received quote from automotive shop, appointment for quote not already scheduled. \par
+            %     Input: Select ``Schedule Appointment'', choose approved quote, choose available date, TEST\_MESSAGE input for appointment notes. \par
+            %     Output: Appointment added to both vehicle owners and auto shops calendars, quote marked as ``scheduled''. \par
+            %     Test Case Derivation: Vehicle Owners should be able to schedule appointments to get their car serviced, after receiving a quote. \par
+            %     How test will be performed: Automatic selection of next available appointment slot, and verification that appointment was made, using API calls. 
+            \item{FR-ApR3-2} \\ \\
+                Control: Automated, dynamic \par
+                Initial State: Authenticated as Shop Employee, quote sent to vehicle owner, appointment for quote not already scheduled. \par
+                Input: Select ``Schedule Appointment'', choose approved quote, choose available date, TEST\_MESSAGE input for appointment notes. \par
+                Output: Appointment added to both vehicle owners and auto shops calendars, quote marked as ``scheduled''. \par
+                Test Case Derivation: Shop Employees should be able to schedule appointments for vehicle owners. \par
+                How test will be performed: Automatic selection of next available appointment slot, and verification that appointment was made, using API calls. 
+            \item{FR-ApR3-3} \\ \\
+                Control: Automated, dynamic \par
+                Initial State: Authenticated as Shop Owner, quote sent to vehicle owner, appointment for quote not already scheduled. \par
+                Input: See FR-ApR3-2. \par
+                Output: See FR-ApR3-2. \par
+                Test Case Derivation: Same as FR-ApR3-2. \par
+                How test will be performed: See FR-ApR3-2.
+            % \item{FR-ApR3-3} \\ \\
+            %     Control: Manual, dynamic \par
+            %     Initial State: Authenticated as Vehicle Owner, appointment for service not already scheduled. \par
+            %     Input: Select ``Schedule Appointment'', choose pre-approved service, choose available date, TEST\_MESSAGE input for appointment notes. \par
+            %     Output: Appointment added to vehicle owners and shop owners calendars. \par
+            %     Test Case Derivation: Pre-approved services do not need a quote to be scheduled. \par
+            %     How test will be performed: Manual interaction with user interface, and manual verification that appointment was indeed created.
+            % \item{FR-ApR3-4} \\ \\
+            %     Control: Automated, dynamic \par
+            %     Initial State: Authenticated as Vehicle Owner, received quote from automotive shop, appointment for quote \textit{already} scheduled. \par
+            %     Input: See FR-ApR2-1. \par
+            %     Output: No changes should occur to either quotes or appointments. \par
+            %     Test Case Derivation: A quote for service that is already scheduled should not be valid for scheduling an appointment. \par
+            %     How test will be performed: Automatic selection of next available appointment slot, and verification that appointment was not made, using API calls.
+        \end{enumerate}
+
+% \subsubsection{Work Orders}
+
+%     This set of tests covers work order requirements as outlined in section 10.1.5 of the SRS.
+
+%     \paragraph{Searching Work Orders}
+%         \begin{enumerate}
+%             \item{FR-WOR1-1} \\ \\ %searching work orders with customer name
+%                 Control: Automated, dynamic \par
+%                 Initial State: Authenticated as shop employee, at least one work order created for customer SAMPLE\_NAME. \par
+%                 Input: Search by customer, query with SAMPLE\_NAME. \par
+%                 Output: List of work orders associated with customer SAMPLE\_NAME. \par
+%                 Test Case Derivation: Shop employees should be able to search current work orders by customer name. \par
+%                 How test will be performed: Automatic search of current work orders using API calls.
+%             \item{FR-WOR1-2} \\ \\ %searching work orders with assigned employee
+%                 Control: Automated, dynamic \par
+%                 Initial State: Authenticated as shop employee; at least one work order created and assigned to employee SAMPLE\_NAME; employee account registered under name SAMPLE\_NAME. \par
+%                 Input: Search by assigned employee, query with SAMPLE\_NAME. \par
+%                 Output: List of work orders assigned to employee SAMPLE\_NAME. \par
+%                 Test Case Derivation: Shop employees should be able to search current work orders by assigned employee. \par
+%                 How test will be performed: See FR-WOR1-1.
+%             \item{FR-WOR1-3} \\ \\ %searching work orders with date range
+%                 Control: Automated, dynamic \par
+%                 Initial State: Authenticated as shop employee, at least one work order created and scheduled for date SAMPLE\_DATE. \par
+%                 Input: Search by date range, start and end date set to SAMPLE\_DATE. \par
+%                 Output: List of work orders scheduled within the given date range. \par
+%                 Test Case Derivation: Shop employees should be able to search current work orders by customer name. \par
+%                 How test will be performed: See FR-WOR1-1.
+%         \end{enumerate}
+
+%     \paragraph{Editing Work Orders} Relevant system requirements include WOR2 and WOR3.
+%         \begin{enumerate}
+%             \item{FR-WOR2-1} \\ \\
+%                 Control: Manual, dynamic \par
+%                 Initial State: Authenticated as shop employee; at least one work order created, not assigned to any employee; employee account registered under name SAMPLE\_NAME. \par
+%                 Input: Select ``Edit Work Order'', change assigned employee to SAMPLE\_NAME. \par
+%                 Output: Updated entry in database, toast indicating successful update. \par
+%                 Test Case Derivation: Shop employees should be able to edit work orders after their creation. \par
+%                 How test will be performed: Manual interaction with user interface, manual inspection that work order has been updated.
+%         \end{enumerate}
+
+\subsubsection{Quotes}
+
+    \paragraph{Quote Chat Service}
+        \begin{enumerate}
+            \item{FR-QR1-1} \\ \\
+                Control: Automated, dynamic \par
+                Initial State: Authenticated as vehicle owner, at least one quote request created and sent to at least one shop. \par
+                Input: Send message in chat SAMPLE\_MESSAGE. \par
+                Output: User interface updated to show message delivered successfully; message appears visible to shop employees \& shop owner. \par
+                Test Case Derivation: Vehicle owners and shop employees may need to communicate about quote requests, clarifying details ect. \par
+                How test will be performed: Automatic delivery of message and verification of message state through API calls.
+        \end{enumerate}
+
+    \paragraph{Creating Quote Request} Relevant system requirements include QR2 and QR3.
+        \begin{enumerate}
+            \item{FR-QR2-1} \\ \\
+                Control: Manual, dynamic \par
+                Initial State: Authenticated as vehicle owner. \par
+                Input: Select ``New Quote Request''; input car details; select automotive shops to send request to. \par
+                Output: New quote request is created and viewable by vehicle owner, and shops which have been sent the request. \par
+                Test Case Derivation: Vehicle owners need to be able to create quote requests and send them to shops. \par
+                How test will be performed: Manual interaction with user interface, and manual inspection of resulting quote request.
+        \end{enumerate}
+
+%\subsubsection{Vendors}
+
+%    \paragraph{View Order History}
+%        \begin{enumerate}
+%            \item{FR-VR1-1} \\ \\
+ %               Control: Automated, dynamic \par
+%                Initial State: Authenticated as shop owner. \par
+%                Input: Select ``View order history''. \par
+%                Output: A list of historical part orders from vendors. \par
+%                Test Case Derivation: Shop owners should be able to view records regarding orders from part vendors. \par
+%                How test will be performed: Automatic retrieval of order history through API calls.
+%        \end{enumerate}
+
+\subsubsection{Shop Lookup}
+
+    \paragraph{Search Bar}
+        \begin{enumerate}
+            \item{FR-SL-1} \\ \\
+                Control: Automatic, Manual \par
+                Initial State: Authenticated as a customer. There is at least one shop registered in the database.\par
+                Input: A search query (string).\par
+                Output: A list of all the shops in the database whose name field contains the search query (case insensitive).\par
+                Test Case Derivation: Must ensure that the search bar can accurately return searching by name so that customers can easily find the details of a certain shop.\par
+                How test will be performed: 20 random shop names will be generated in the database. The shop names will be a combination of randomly selected strings (3-5) from a predetermined set of strings. The search query will be a random sub-string of a randomly selected string from that same set. The query result (list of shops) will then be compared to the true list to see if they are the same.\par
+            \item{FR-SL-2} \\ \\
+                Control: Automatic, Manual \par
+                Initial State: Authenticated as a customer. There is at least one shop registered in the database with geolocation data.\par
+                Input: A search query (string)\par
+                Output: A list of all the shops in the database whose address contains the search query (e.g street name, city, postal code, etc.)\par
+                Test Case Derivation: It is often more useful to search by city or postal code so that customers can discover auto shops that are near them or near a point of interest.\par
+                How test will be performed: 20 shops with random names will be generated with a random address. The street name, postal code, city, and country will be randomly selected from a set of predetermined strings (one set for each field). There will be a separate search query for street name, postal code, city, and country. The query results (list of shops) will be compared to the true list of shops to see if they are the same. \par
+        \end{enumerate}
+        
+    \paragraph{Filtering}
+        \begin{enumerate}
+            \item{FR-SL-3} \\ \\
+                Control: Manual, Automated \par
+                Initial State: None \par
+                Input: A valid street address\par
+                Output: A geolocation (coordinates)\par
+                Test Case Derivation: Need to make sure the system can properly parse street addresses and convert them into their corresponding geolocation.\par
+                How test will be performed: Generate an address from an address generator. Get the coordinates from a geolocation API. Compare the geolocation returned by the system matches the correct geolocation.\par
+            \item{FR-SL-4} \\ \\
+                Control: Automatic \par
+                Initial State: Authenticated as a customer. There is at least one shop registered in the database with geolocation data.\par
+                Input: A distance limit in km (integer) and a valid address (string)\par
+                Output: A list of all the shops in the database whose distance from the provided address is less than or equal to the distance limit provided.\par
+                Test Case Derivation: Customers can't or won't travel far for vehicle maintenance. Need to ensure that filtering automotive shops by distance is working correctly so that customers can have a better sense of their options.\par
+                How test will be performed: Random addresses will be generated and the distances from provided address will be calculated with an external API. Compare the list of shops and see if they contain all shops with distance less than or equal to the distance limit.\par
+            \item{FR-SL-5} \\ \\
+                Control: Automatic \par
+                Initial State: Authenticated as a customer. There is at least one shop registered in the database with services data. \par
+                Input: Service filter(s) (list of services)\par
+                Output: A list of all the shops that offer all the services in the service filter list.\par
+                Test Case Derivation: Customers need to be able to get an accurate list of shops that offer the types of services that they want.\par
+                How test will be performed: Shops with a random list of services will be generated. A list of 3 randomly selected services will be passed as input. Each generated shop will be checked to see if they contain the specified services and will be checked to see if they are contained within the returned list.\par
+        \end{enumerate}
+
+    \paragraph{Sorting}
+        \begin{enumerate}
+            \item{FR-SL-6} \\ \\
+                Control: Manual, Automated \par
+                Initial State: Authenticated as a customer. There is at least two shops registered in the database. \par
+                Input: Sort by name ascending or descending (Boolean)\par
+                Output: Sorted list of shops\par
+                Test Case Derivation: Easier for customers to keep track of which shops they've looked at or find a certain shop if they are ordered.\par
+                How test will be performed: Check if the returned list of shops is in alphabetical or reverse alphabetical order.\par
+            \item{FR-SL-7} \\ \\
+                Control: Manual, Automated \par
+                Initial State: Authenticated as a customer. There is at least two shops registered in the database with geolocation data.\par
+                Input: Sort by distance closest or furthest first (Boolean) and a valid address \par
+                Output: Sorted list of shops \par
+                Test Case Derivation: Customers will want to look at the closest shop to them first. \par
+                How test will be performed: Check if the returned list of shops is properly sorted by distance. \par
+        \end{enumerate}
+        
+...
+
+\subsection{Tests for Nonfunctional Requirements}
+
+The structure of the below tests follow the way the nonfunctional requirements are formatted on the SRS document.
+
+\subsubsection{Look and Feel}
+		
+\paragraph{Minimal Interface}
+
+\begin{enumerate}
+
+\item{NFR-LFR1-1\\}
+
+Type: Record-and-Playback Testing, Automatic
+					
+Initial State: A page of the website is loaded and visible
+					
+Input/Condition: Any component with an interaction
+					
+Output/Result: A tree of interactions showcasing the depth of each interaction causing a user interface change (without going back to the previous frame), where the level of depth should not exceed 5, and the number of interaction paths taken per page should not exceed 10
+					
+How test will be performed: Using automation tools, we will automate and record every action component being acted upon for every page, where some interactions will lead to other pages with other interactive components (creating a tree), and the tree will be tested by the above given metrics.
+
+\end{enumerate}
+
+\paragraph{Illusion of Depth}
+
+\begin{enumerate}
+
+\item{NFR-LFR2-1\\}
+
+Type: Automatic
+					
+Initial State: A page of the website is loaded and visible with some popup
+					
+Input/Condition: Some "absolutely" positioned HTML element(s) are visible
+					
+Output/Result: Each absolutely positioned element should contain a "box-shadow" CSS style
+					
+How test will be performed: Using automation tools, we will query different page components and check that elements with the "absolute" style should likewise contain a "box-shadow" style, as this is a standard in modern web interface design
+
+\end{enumerate}
+
+\paragraph{Seamless Transitions}
+
+\begin{enumerate}
+
+\item{NFR-LFR3-1\\}
+
+Type: Automatic
+					
+Initial State: A page of the website is loaded and visible
+					
+Input/Condition: Some panel's visibility is toggled through a button interaction
+					
+Output/Result: Every panel with a visibility toggle should have an associated transform CSS style to give it a smooth animation 
+					
+How test will be performed: Using automation tools, we will query for every web component tagged with a "-panel" suffix, which emphasizes the component as a top-level panel, and verify that each contains a transformation style and an animation, if its visibility can be toggled
+
+\end{enumerate}
+
+\paragraph{Smoothed Edges}
+
+\begin{enumerate}
+
+\item{NFR-LFR4-1\\}
+
+Type: Automatic
+					
+Initial State: A page of the website is loaded and visible
+					
+Input/Condition: Some components with a "border" CSS style attribute are loaded
+					
+Output/Result: Every component with a "border" CSS style should likewise contain a "border-radius" style of value "4px", unless it is an image
+					
+How test will be performed: Using automation tools, we will query for every web component containing a "border" CSS property, and verify that it likewise contains a "border-radius" property of value "4px" if it is not an "img" HTML component
+
+\end{enumerate}
+
+\paragraph{Limited Colour Palette}
+
+\begin{enumerate}
+
+\item{NFR-LFR5-1\\}
+
+Type: Automatic
+					
+Initial State: A framework for styling is available
+					
+Input/Condition: Some components are loaded in with custom colours
+					
+Output/Result: Every component should NOT contain a colour that is outside the palette defined by a configuration file, where the palette should consist of no more than 6 colours, with any amount of variation in those colours permitted (e.g: "grey" and "light-grey" would be considered 1 colour here if they are under one custom colour category in the configuration)
+					
+How test will be performed: Using automation tools, we will query the stylesheets and web components to verify no colour style from CSS or the given styling framework is used that is not defined in the colour palette configuration file, which contains predefined colour hex values
+
+\end{enumerate}
+
+\subsubsection{Usability}
+
+\paragraph{Simplicity with Little Technical Background}
+
+\begin{enumerate}
+
+\item{NFR-UHR1-1\\}
+
+Type: Dynamic, Manual, Survey
+					
+Initial State: The system is running without errors
+					
+Input/Condition: The user will attempt to perform the basic actions of starting the app, searching for a work order, chatting to agree to a quote, scheduling an appointment, and closing the app
+					
+Output/Result: The user will give a rating about how simple it was for each action to occur
+					
+How test will be performed: Using survey questions, we will ask an individual who professes to have little technical background to perform the basic MVP actions of the customer in our application. From there, they will give a rating out of 10 on how easy it was to figure out and interact with the UI to complete the given tasks. The chat systems tests will have one person from the development team act as the chat partner.
+
+Survey questions are in the Appendix.
+
+\item{NFR-UHR1-2\\}
+
+Type: Dynamic, Manual, Survey
+					
+Initial State: The system is running without errors
+					
+Input/Condition: The user will attempt to perform the basic actions of signing up, logging in, setting their profile, setting service options, chatting to agree to a quote, setting appointment availability, and logging out
+					
+Output/Result: The user will give a rating about how simple it was for each action to occur
+					
+How test will be performed: Using survey questions, we will ask an individual who professes to have little technical background to perform the basic MVP actions of a shop owner/employee in our application. From there, they will give a rating out of 10 on how easy it was to figure out and interact with the UI to complete the given tasks. The chat systems tests will have one person from the development team act as the chat partner.
+
+Survey questions are in the Appendix.
+
+\end{enumerate}
+
+\paragraph{Accessibility}
+
+\begin{enumerate}
+
+\item{NFR-UHR2-1\\}
+
+Type: Automatic
+					
+Initial State: All web components are running properly
+					
+Input/Condition: Some components are loaded in that contain interactions
+					
+Output/Result: Every component should have certain HTML and CSS attributes that conform to accessibility standards
+					
+How test will be performed: Using automation tools, we will query different pages' web components and make sure that those which contain interactions have "tabindex" and "role" HTML attributes filled out, as well as have up/down/left/right/enter-key keyboard event listeners, so that users can fully navigate using just the keyboard
+
+\end{enumerate}
+
+\paragraph{Emphasized Interactive Components}
+
+\begin{enumerate}
+
+\item{NFR-UHR3-1\\}
+
+Type: Manual, Dynamic, Survey
+					
+Initial State: A page is loaded without errors
+					
+Input/Condition: Some web page components are loaded containing both interactive components and non-interactive components
+					
+Output/Result: The user shall give their guess as to how many interactive components there are on the given page
+					
+How test will be performed: Using a survey, we will ask a user to view the pages that make up our application and ask how many interactive components there are. If the user can guess with 80 percent accuracy at the end of the survey, it will be deemed that the interactive components were emphasized enough for the user to easily see them.
+
+Survey questions are in the Appendix.
+
+\end{enumerate}
+
+\paragraph{Minimizing Clicks Per Interaction}
+
+\begin{enumerate}
+
+\item{NFR-UHR4-1\\}
+
+Type: Automatic
+					
+Initial State: The system is running with errors
+					
+Input/Condition: All the designed web components are without errors
+					
+Output/Result: Whether any web component has a double click event handler defined
+					
+How test will be performed: Using automation tools, we will verify that no interactive component has any double click functionality, as this could simply be broken down into simpler single click interactions
+
+\end{enumerate}
+
+\paragraph{Limit Input Fields}
+
+\begin{enumerate}
+
+\item{NFR-UHR5-1\\}
+
+Type: Automatic
+					
+Initial State: The system is running with errors
+					
+Input/Condition: All the designed web components are without errors
+					
+Output/Result: Whether a web component that is not of a specific type has any input fields
+					
+How test will be performed: Using automation tools, we will query the front-end's web components and verify that the only web components with an input field instead of a selectable list are in the authentication, chat, or profile pages, or are tagged with a "input-description" CSS class
+
+\end{enumerate}
+
+\subsubsection{Performance}
+
+\paragraph{System Uptime}
+
+\begin{enumerate}
+
+\item{NFR-PR1-1\\}
+
+Type: Dynamic, Automatic, Stress
+					
+Initial State: The system is successfully running without any issues.
+					
+Input/Condition: An overwhelming number of requests to access the system at once will occur.
+					
+Output/Result: The system should successfully remain online throughout these tests and users should continue to access and use the system without encountering any issues.
+					
+How test will be performed: An automated DDoS stress testing application will attempt to crash the application with an overwhelming number of requests.
+
+\end{enumerate}
+
+\paragraph{System Storage Usage}
+
+\begin{enumerate}
+
+\item{NFR-PR2-1\\}
+
+Type: Structural, Dynamic, Manual
+					
+Initial State: The system is running.
+					
+Input: The tester uses some features on the Sayyara website, signs in, fills out forms, etc.
+					
+Output: There should not be any memory being used by the application aside from the sign-in token.
+					
+How test will be performed: Using Google Chrome's 'Inspect Element' resources in the 'Application' tab, the tester can view storage and cache for the website. These features can be used to discern if anything other than the automatic sign-in token is taking up memory or storage and steps can be taken to prevent other features from storing information to ensure the application is using minimal resources.
+
+\end{enumerate}
+
+\paragraph{Database Efficiency}
+
+\begin{enumerate}
+
+\item{NFR-PR3-1\\}
+
+Type: Structural, Dynamic, Manual
+					
+Initial State: The entire system (frontend, backend, database) is successfully running. The backend code will contain timer debug messages so the tester can determine how long it will take for these database requests to complete to ensure they meet the requirements.
+					
+Input: Manual requests to get and update data in the database will be made on the application by the tester.
+					
+Output: The backend debug messages will output the time it took for the request to complete.
+					
+How test will be performed: The test will be performed manually by the tester inputting information onto the application. The tester will need to evaluate the time it takes for a database request to complete from the debug messages in the back end code. Unit tests for this will be developed in the future to eliminate the need for manual testing and will allow for more coverage.
+
+\end{enumerate}
+
+\subsubsection{Operational and Environmental}
+
+\paragraph{Internet Browser Compatibility}
+
+\begin{enumerate}
+					
+\item{NFR-OER1-1\\}
+
+Type: Functional, Dynamic, Manual
+					
+Initial State: The system is running.
+					
+Input: The tester will evaluate all features of the Sayyara website on various different web browsers and potentially different versions of these web browsers.
+					
+Output: The Sayyara website should function and all features on the website should work without any issues.
+					
+How test will be performed: A team member will test the application on the current latest version of each browser and ensure each feature on the application functions according to requirements. Additionally, usability survey questions will be distributed to external testers of the application to gather feedback on potential different browser versions and how they function with the Sayyara website.
+
+\end{enumerate}
+
+% \paragraph{Mobile Compatibility}
+
+% \begin{enumerate}
+
+% \item{NFR-OER2-1\\}
+
+% Type: Functional, Dynamic, Manual
+					
+% Initial State: The system is running.
+					
+% Input: The tester will evaluate all features of the Sayyara website on either an Apple or an Android mobile device with potentially different operating system versions and web applications.
+					
+% Output: The Sayyara website should function and all features on the website should work without any issues.
+					
+% How test will be performed: A team member will test the application on both Apple and Android devices running their current versions. Additionally, usability survey questions will be distributed to external testers of the application to gather feedback on the type of smartphone they are using, the operating system version they are using, as well as the mobile web application they are using to access Sayyara.
+
+% \end{enumerate}
+
+% \subsubsection{Maintainability and Support}
+
+% \paragraph{Support Feature Testing}
+
+% \begin{enumerate}
+					
+% \item{NFR-MSR1-1\\}
+
+% Type: Functional, Static, Manual
+					
+% Initial State: The email account has been created and is ready to receive support emails.
+					
+% Input: The tester sends an email to the Sayyara support email.
+					
+% Output: The tester receives an automated email thanking them for their email and that support will respond to them ASAP. The Sayyara email account should have a new email in its inbox.
+
+% How test will be performed: The team member testing this feature will send a manual test email to the Sayyara email account to ensure the feature works as intended and will work for future support of the application required by end users.
+
+% \end{enumerate}
+
+\subsubsection{Security}
+
+\begin{enumerate}
+
+\item{NFR-SR1-1}\\
+
+Type: Dynamic, Automated
+
+Initial State: System is running with no errors
+
+Input: Passwords
+
+Output: True or False
+
+How the test will be performed: Automated tools will be used to create a number of different accounts with varying passwords that match with the system password compliance (e.g. password must contain a letter, number, etc.). The test will check if the database entry for these passwords are properly encrypted (i.e. plain text passwords are not stored in the database). If the encrypted version of the password matches its database entry, then the test case will pass.
+
+\item{NFR-SR2-1}\\
+
+Type: Dynamic, Automated
+
+Initial State: System is running with no errors
+
+Input: Two test accounts, create and delete operations
+
+Output: Error message (you do not have access)
+
+How the test will be performed: Two internal test accounts will be set up. An automated tool will run create operations on the first account (creating shops, appointments, etc.). The second account will attempt to request a delete operation through the API on the newly created data nodes. The system should return an error message to the tool. If none of the created data nodes were deleted, then the test case will pass.
+
+\item{NFR-SR3-1}\\
+
+Type: Automated
+
+Initial State: System is running with no errors
+
+Input: Any database operation (CRUD), number of seconds between operations)
+
+Output: Temporary timeout (rate limit)
+
+How the test will be performed: Automated tools will be given a list of valid CRUD database operations that a typical user will be expected to be able to perform. The automated tool will run one random valid operation every X amount of seconds. If the number of operations exceeds the allowed amount within 15 seconds, the system should return some message that states that there will be a timeout. The test will pass if the timeout is given after the allowed number of operations are exceeded.
+
+\end{enumerate}
+
+\subsubsection{Cultural and Political}
+
+\begin{enumerate}
+
+\item{NFR-CPR1-1}\\
+
+Type: Static, Automated
+
+Initial State: Front-end code can be accessed
+
+Input: Potentially offensive language
+
+Output: Locations of potentially offensive language (file, line, etc.)
+
+How the test will be performed: Automated tools will be used on the source code for the front-end of the system. A list of potentially offensive language will be passed to the automated tool. If the testing tool finds a match for any of the words or sentences in the code, all instances of the use will be returned as an output, this includes the file name, the file path, and the line number.
+
+\item{NFR-CPR2-1}\\
+
+Type: Static, Manual
+
+Initial State: System is translated and system is running with no errors
+
+Input: Tester navigates the website
+
+Output: Locations of any mistranslated sections or components
+
+How the test will be performed: Native speakers of the translated language will be asked to navigate the web-app and be tasked with finding and mistranslated or untranslated components of the website. They will also report if any components are coherent and can be easily read by other native speakers.
+
+\item{NFR-CPR3-1}\\
+
+Type: Dynamic, Automated
+
+Initial State: Chat system is running without errors
+
+Input: Profanity
+
+Output: Censored words
+
+How the test will be performed: Automated tools will be given a list of known profanity and will slowly send these words in the chat system to an internal testing account. If the word is properly displayed as some number of asterisks (e.g. ***), then the test cases is considered a pass.
+
+\end{enumerate}
+
+\subsubsection{Compliance}
+
+\begin{enumerate}
+
+\item{NFR-CR1-1}\\
+
+Type: Static, Manual
+
+Initial State: The system is running without errors.
+
+Input: Web component with disclaimer is loaded during user sign up.
+
+Output: Disclaimer should be emphasized to the user.
+
+How the test will be performed: Tester will go through the account sign up process and ensure the disclaimer is shown and is large enough to be read easily and quickly. Tester will also ensure the box to click "I agree" is functioning correctly (i.e. user cannot create an account unless the box is checked).
+
+\item{NFR-CR1-2}\\
+
+Type: Manual, Survey
+
+Initial State: The system is running without errors.
+
+Input: Web component with disclaimer is loaded during user sign up.
+
+Output: The user will answer whether or not they have seen and understood the disclaimer.
+
+How the test will be performed: Users will be asked a short series of questions about the Sayyara product disclaimer. If at least 75\% of users answer favourably, then the component will be deemed successful.
+
+Survey questions can be found in the Appendix.
+
+\end{enumerate}
+
+\subsection{Traceability Between Test Cases and Requirements}
+
+\noindent \textbf{Functional Requirements}
+FR- removed from beginning of test case names to preserve space\\
+
+\noindent \textbf{Authentication and Account Profile Requirements}\\
+Covering sections 5.1.1, 5.2.2
+\begin{table}[H]
+    \tiny
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        &     AR1-1&AR1-2&AR1-3&AR2-1&AR2-2&AR2-3&PAR1-1&PAR3-1&PAR6-1&PAR7-1&PAR7-2\\ \hline
+        AuR1 &    X&    X&    X&     &     &     &      &      &      &      &      \\ \hline
+        AuR2 &     &     &     &    X&    X&    X&      &      &      &      &      \\ \hline
+        AuR3 &     &     &     &     &     &    X&      &      &      &      &      \\ \hline
+        SR1  &     &     &     &     &     &     &     X&      &      &      &      \\ \hline
+        SR2  &     &     &     &     &     &     &     X&      &      &      &      \\ \hline
+        PAR1 &     &     &     &     &     &     &     X&      &      &      &      \\ \hline
+        PAR3 &     &     &     &     &     &     &      &     X&      &      &      \\ \hline
+        PAR6 &     &     &     &     &     &     &      &      &     X&      &X     \\ \hline
+        PAR7 &     &     &     &     &     &     &      &      &      &     X&X     \\ \hline
+    \end{tabular}
+    \caption{Traceability Matrix between Test Cases and Functional Requirements}
+\end{table}
+
+\noindent \textbf{Appointment and Quote Requirements}\\
+Covering sections 5.1.3, 5.1.4, 5.1.5, 5.1.6, 5.1.7
+\begin{table}[H]
+    \tiny
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        % &     ApR1-1&ApR3-2&ApR3-3&ApR3-4&ApR3-5&WOR1-1&WOR1-2&WOR1-3&WOR2-1&QR1-1&QR2-1&VR1-1      \\\hline
+        &       ApR1-1&ApR3-2&ApR3-3&QR1-1&QR2-1 \\ \hline
+        ApR1 &       X&      &      &      &      \\ \hline
+        ApR2 &        &     X&     X&      &      \\ \hline
+        ApR3 &        &     X&      &      &      \\ \hline
+        % ApR4 &      &      &      &      &     X&      &      &      &      &      &     &     &\\ \hline
+        % WOR1 &      &      &      &      &      &      &     X&     X&     X&      &     &     &\\ \hline
+        % WOR2 &      &      &      &      &      &      &      &      &      &     X&     &     &\\ \hline
+        % WOR3 &      &      &      &      &      &      &      &      &      &     X&     &     &\\ \hline
+        QR1  &        &      &      &     X&      \\ \hline
+        % QR2  &      &      &      &      &      &      &      &      &      &      &     &    X&\\ \hline
+        QR3  &        &      &      &      &     X \\ \hline
+%        VR1  &      &      &      &      &      &      &      &      &      &      &     &    &X\\ \hline
+%        VR2  &      &      &      &      &      &      &      &      &      &      &     &    &X\\ \hline
+    \end{tabular}
+    \caption{Traceability Matrix between Test Cases and Functional Requirements}
+\end{table}
+
+\noindent \textbf{Shop Lookup Requirements}\\
+Covering section 5.1.7
+\begin{table}[H]
+    \tiny
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        % &     ShL1-1&ShL1-2&ShL2-1&ApR2-2&ApR2-3&ApR3-1&ApR3-2\\\hline
+        &     ShL1-1&ShL1-2&ShL2-1&ApR3-2\\\hline
+        SL1 &     X&      &      &              \\ \hline
+        SL2 &      &     X&      &               \\ \hline
+        SL3 &      &      &     X&               \\ \hline
+        SL4 &      &      &      &                \\ \hline
+        SL5 &      &      &     X&               \\ \hline
+        SL6 &      &      &      &                \\ \hline
+        SL7 &      &      &     X&               X\\ \hline
+    \end{tabular}
+    \caption{Traceability Matrix between Test Cases and Functional Requirements}
+\end{table}
+
+\noindent \textbf{Non-Functional Requirements}\\
+NFR- removed from beginning of test case names to preserve space\\
+
+\noindent \textbf{Look and Feel and Usability and Humanity Nonfunctional Requirements}
+Covering sections 5.2.1, 5.2.2
+\begin{table}[H]
+    \tiny
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        &    LFR1-1&LFR2-1&LFR3-1&LFR4-1&LFR5-1&UHR1-1&UHR1-2&UHR2-1&UHR3-1&UHR4-1&UHR5-1\\ \hline
+        LFR1&     X&      &      &      &      &      &      &      &      &      &      \\ \hline
+        LFR2&      &     X&      &      &      &      &      &      &      &      &      \\ \hline
+        LFR3&      &      &     X&      &      &      &      &      &      &      &      \\ \hline
+        LFR4&      &      &      &     X&      &      &      &      &      &      &      \\ \hline
+        LFR5&      &      &      &      &     X&      &      &      &      &      &      \\ \hline
+        UHR1&     X&      &      &      &      &     X&     X&      &      &      &      \\ \hline
+        UHR2&     X&      &      &      &      &      &      &     X&      &     X&      \\ \hline
+        UHR3&      &      &      &      &      &      &      &      &     X&      &      \\ \hline
+        UHR4&     X&      &      &      &      &      &      &     X&      &     X&      \\ \hline
+        UHR5&     X&      &      &      &      &      &      &      &     X&     X&     X\\ \hline
+    \end{tabular}
+    \caption{Traceability Matrix 1 between Test Cases and Nonfunctional Requirements}
+\end{table}
+
+\noindent \textbf{Performance, Operational and Environmental, and Maintainability and Support Requirements}
+Covering sections 5.2.3, 5.2.4, 5.2.5
+\begin{table}[H]
+    \tiny
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        % &    PR1-1&PR2-1&PR3-1&OER1-1&OER2-1&MSR1-1\\ \hline
+        &    PR1-1&PR2-1&PR3-1&OER1-1\\ \hline
+        PR1 &    X&     &     &      \\ \hline
+        PR2 &     &    X&     &      \\ \hline
+        PR3 &     &     &    X&      \\ \hline
+        OER1&     &     &    X&      \\ \hline
+        OER2&     &     &    X&      \\ \hline
+        OER3&     &     &     &      \\ \hline
+        MSR1&     &     &     &      \\ \hline
+        % MSR2&     &     &     &      &      &      X\\ \hline
+        SR1 &    X&     &     &      \\ \hline
+        SR3 &    X&     &     &      \\ \hline
+    \end{tabular}
+    \caption{Traceability Matrix 2 between Test Cases and Nonfunctional Requirements}
+\end{table}
+
+\noindent \textbf{Security, Cultural and Political, and Compliance Nonfunctional Requirements}
+Covering sections 5.2.6, 5.2.7, 5.2.8
+\begin{table}[H]
+    \tiny
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        &    SR1-1&SR2-1&SR3-1&CRP1-1&CPR2-1&CPR3-1&CR1-1&CR1-2\\ \hline
+        SR1 &    X&     &     &      &      &      &     &\\ \hline
+        SR2 &     &    X&     &      &      &      &     &\\ \hline
+        SR3 &     &     &    X&      &      &      &     &\\ \hline
+        CPR1&     &     &     &     X&      &      &     &\\ \hline
+        CPR2&     &     &     &      &     X&      &     &\\ \hline
+        CPR3&     &     &     &      &      &     X&     &\\ \hline
+        CR1 &     &     &     &      &      &      &    X&X\\ \hline
+    \end{tabular}
+    \caption{Traceability Matrix 3 between Test Cases and Nonfunctional Requirements}
+\end{table}
+\section{Unit Test Description}
+
+This section describes the unit testing plan for the given list of unit tests. The tests are organized by module and include the initial state and expected results for each test.
+
+\subsection{Customer Module}
+\begin{enumerate}
+    \item \textbf{Test Case:} Register a new customer \\
+    \textbf{Initial State:} User fills out the registration form and submits the data \\
+    \textbf{Expected Results:} A new customer is created with the provided data
+    
+    \item \textbf{Test Case:} Sign in as customer \\
+    \textbf{Initial State:} User fills out the sign-in form and submits the data \\
+    \textbf{Expected Results:} User is authenticated with the provided data
+    
+    \item \textbf{Test Case:} Search for customers \\
+    \textbf{Initial State:} A non-customer is searching for customers \\
+    \textbf{Expected Results:} A customer is found by the provided criteria
+    
+    \item \textbf{Test Case:} View customer profile \\
+    \textbf{Initial State:} A customer has navigated to their profile \\
+    \textbf{Expected Results:} The customer sees the relevant data pertaining to their account
+    
+    \item \textbf{Test Case:} Edit customer profile \\
+    \textbf{Initial State:} A customer is editing their profile information \\
+    \textbf{Expected Results:} The customer's profile information is updated
+\end{enumerate}
+
+\subsection{Employee Module}
+\begin{enumerate}
+    \item \textbf{Test Case:} Register a new employee \\
+    \textbf{Initial State:} The shop owner has already sent an invite for the user. User fills out the registration form and submits the data \\
+    \textbf{Expected Results:} A new employee is created with the provided data
+    
+    \item \textbf{Test Case:} Sign in as employee \\
+    \textbf{Initial State:} User fills out the sign-in form and submits the data \\
+    \textbf{Expected Results:} User is authenticated with the provided data
+    
+    \item \textbf{Test Case:} Search for employees \\
+    \textbf{Initial State:} An employee is searching for other employees \\
+    \textbf{Expected Results:} An employee is found by the provided criteria
+    
+    \item \textbf{Test Case:} View employee profile \\
+    \textbf{Initial State:} An employee has navigated to their profile \\
+    \textbf{Expected Results:} The employee sees the relevant data pertaining to their account
+    
+    \item \textbf{Test Case:} Edit employee profile \\
+    \textbf{Initial State:} An employee is editing their profile information \\
+    \textbf{Expected Results:} The employee's profile information is updated
+    
+    \item \textbf{Test Case:} Delete employee profile \\
+    \textbf{Initial State:} A shop owner is deleting an employee's profile ie, removing them from the shop. \\
+    \textbf{Expected Results:} The employee profile is deleted from the database
+\end{enumerate}
+
+\subsection{Shop Module}
+\begin{enumerate}
+    \item \textbf{Test Case:} Register a new shop \\
+    \textbf{Initial State:} User fills out the registration form and submits the data after signing up as a shop owner. \\
+    \textbf{Expected Results:} A new shop is created with the provided data
+    
+    \item \textbf{Test Case:} Sign in as shop \\
+    \textbf{Initial State:} User fills out the sign-in form and submits the data as a shop owner \\
+    \textbf{Expected Results:} User is authenticated with the provided data
+    
+    \item \textbf{Test Case:} Search for shops \\
+    \textbf{Initial State:} A customer is searching for shops in their area \\
+    \textbf{Expected Results:} A shop is found by the provided criteria
+    
+    \item \textbf{Test Case:} View shop profile \\
+    \textbf{Initial State:} A customer has navigated to a shop's profile \\
+    \textbf{Expected Results:} The customer sees the relevant data pertaining to the shop
+    
+    \item \textbf{Test Case:} Edit shop profile \\
+    \textbf{Initial State:} A shop is editing their profile information \\
+    \textbf{Expected Results:} The shop's profile information is updated
+    
+    \item \textbf{Test Case:} Delete shop profile \\
+    \textbf{Initial State:} A shop is deleting their profile \\
+    \textbf{Expected Results:} The shop profile is deleted from the database
+    
+    \item \textbf{Test Case:} Add an employee to a shop \\
+    \textbf{Initial State:} A shop is adding an employee to their shop \\
+    \textbf{Expected Results:} An employee is added to the shop
+    
+    \item \textbf{Test Case:} Remove an employee from a shop \\
+    \textbf{Initial State:} A shop is removing an employee from their shop \\
+    \textbf{Expected Results:} An employee is removed from the shop
+    
+    \item \textbf{Test Case:} Add a service to a shop \\
+    \textbf{Initial State:} A shop is adding a service to their shop \\
+    \textbf{Expected Results:} A service is added to the shop
+    
+    \item \textbf{Test Case:} Remove a service from a shop \\
+    \textbf{Initial State:} A shop is removing a service from their shop \\
+    \textbf{Expected Results:} A service is removed from the shop
+\end{enumerate}
+
+\subsection{Vehicle Module}
+\begin{enumerate}
+    \item \textbf{Test Case:} Add a vehicle to a customer's profile \\
+    \textbf{Initial State:} A customer is adding a vehicle to their profile \\
+    \textbf{Expected Results:} A vehicle is added to the customer profile
+    
+    \item \textbf{Test Case:} Remove a vehicle from a customer's profile \\
+    \textbf{Initial State:} A customer is removing a vehicle from their profile \\
+    \textbf{Expected Results:} A vehicle is removed from the customer profile
+\end{enumerate}
+
+\subsection{Appointment Module}
+\begin{enumerate}
+    \item \textbf{Test Case:} Add an appointment to a shop \\
+    \textbf{Initial State:} A shop is adding an appointment to their schedule \\
+    \textbf{Expected Results:} An appointment is added to the shop schedule
+    
+    \item \textbf{Test Case:} Remove an appointment from a shop \\
+    \textbf{Initial State:} A shop is removing an appointment from their schedule \\
+    \textbf{Expected Results:} An appointment is removed from the shop schedule
+\end{enumerate}
+
+\subsection{Availability Module}
+\begin{enumerate}
+    \item \textbf{Test Case:} Add an availability to an employee \\
+    \textbf{Initial State:} An employee is adding an availability to their schedule \\
+    \textbf{Expected Results:} An availability is added to the employee schedule
+    
+    \item \textbf{Test Case:} Remove an availability from an employee \\
+    \textbf{Initial State:} An employee is removing an availability from their schedule \\
+    \textbf{Expected Results:} An availability is removed from the employee schedule
+\end{enumerate}
+
+				
+\bibliographystyle{plainnat}
+
+\bibliography{../../refs/References}
+
+\newpage
+
+\section{Appendix}
+
+\subsection{Symbolic Parameters}
+
+The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
+Their values are defined in this section for easy maintenance.\\
+
+TEST\_USER: valid and existing user name (``test\_user'')\\
+
+TEST\_PW: valid password for TEST\_USER (``Pass451!'')\\
+
+EMPLOYEE\_NAME: existing employee name (``Test Employee'')\\ 
+
+TEST\_MESSAGE: Sample text for message field (``This is some text.'')\\
+
+SAMPLE\_NAME: Example name for a customer (``John Doe'')\\
+
+SAMPLE\_DATE: Example date in YYYY-MM-DD format (``2022-01-13'')\\
+
+\subsection{Usability Survey Questions}
+
+Usability questions for browser and browser versions
+\begin{enumerate}
+    \item What internet browser are you using to access Sayyara?
+    \item What version of browser are you using to access Sayyara? (This can typically be found by going to Settings -\> About, or Help -\> About). Enter N/A if you are unsure.
+\end{enumerate}
+
+% Usability questions for web applications
+% \begin{enumerate}
+%     % \item What type of mobile device are you using to access Sayyara?
+%     \item What operating system version are you using on your mobile device? (This can be found in the mobile device's settings). Enter N/A if you are unsure.
+%     \item What mobile web application are you using to access Sayyara on your mobile device?
+% \end{enumerate}
+
+Usability questions for a user acting as a customer. Specifically, asking for a 1-10 rating per the following interactions after using the app independently:
+\begin{enumerate}
+    \item How easy was it to start the app as a customer?
+    \item How easy was it to search for a work order?
+    \item How easy was it to start a chat?
+    \item how easy was it to agree to a quote?
+    \item How easy was it to schedule an appointment with a shop?
+    \item How easy was it to close the app?
+\end{enumerate}
+
+Usability questions for a user acting as a shop owner/employee. Specifically, asking for a 1-10 rating per the following interactions after using the app independently:
+\begin{enumerate}
+    \item How easy was it to sign up for an account?
+    \item How easy was it to log in to your account?
+    \item How easy was it to setup your profile?
+    \item How easy was it to set service options?
+    \item How easy was it to use the chat system to agree to a quote?
+    \item How easy was it to set your appointment availability?
+    \item How easy was it to log out of your account?
+\end{enumerate}
+
+Usability questions for a user looking at a page (where every page will be shown to the user one at a time) and asked the following question:
+\begin{enumerate}
+    \item How many interactive components do you see, such as a button, dropdown, checkbox, etc?
+\end{enumerate}
+
+Compliance questions for a user after going through the sign up process will be asked the following questions:
+\begin{enumerate}
+    \item Have you properly read the Sayyara disclaimer?
+    \item Was the disclaimer emphasized enough for you during sign up?
+    \item Can you briefly summarize what you understand from the disclaimer (if you answered YES to Q1)?
+\end{enumerate}
+
+\newpage{}
+\section*{Appendix --- Reflection}
+
+The information in this section will be used to evaluate the team members on the
+graduate attribute of Lifelong Learning.  Please answer the following questions:
+
+\begin{enumerate}
+  \item What knowledge and skills will the team collectively need to acquire to
+  successfully complete the verification and validation of your project?
+  Examples of possible knowledge and skills include dynamic testing knowledge,
+  static testing knowledge, specific tool usage etc.  You should look to
+  identify at least one item for each team member.
+  \item For each of the knowledge areas and skills identified in the previous
+  question, what are at least two approaches to acquiring the knowledge or
+  mastering the skill?  Of the identified approaches, which will each team
+  member pursue, and why did they make this choice?
+\end{enumerate}
+
+Alyssa
+\begin{enumerate}
+    \item There are quite a few testing methods that the team would like to implement to ensure sufficient testing coverage is acquired and one of the testing methods that I would like to learn more about and focus my attention on is static testing. I am vaguely familiar with the definition of static testing but have not had the opportunity to use it in any of my past projects.
+    \item In order to acquiring more knowledge about static testing, I will be inquiring my notes from previous school courses regarding testing as well as performing my own research into static testing. Additionally, in order to get hands-on experience with static testing, I will reference some previous projects I have worked on and will write a few static tests for the system in order to get a better understanding of how these tests should behave compared to already existing test cases that use a different type of testing.
+\end{enumerate}
+
+Harsh
+\begin{enumerate}
+    \item The team was eager to learn and use Docker in the project, which allows for the team to build a platform-agnostic application that can be tested in a whole host of different environments.
+    \item For Docker, the team mainly utilized the docker documentation as well as implementation examples from other projects to help learn the skill reliably.
+\end{enumerate}
+
+Kai
+\begin{enumerate}
+    \item The team needs to collectively investigate the various testing tools suitable for the tech stack used in the project. I am specifically interested expand my experience in testing by learning static testing for Django using Coverage.py for code coverage, and Cypress for dynamic end-to-end testing of the frontend.
+    
+    \item For both of the testing tools, my approach to learning involves a combination of reading and doing. Reading the tool documentation and tutorials provide a sense of the use cases and basic usage of the tools. Applying the basic usage on a simple project, then incrementally exploring the tool features offer more practical hands-on experience in using the tools and testing methods.
+\end{enumerate}
+
+Ethan
+\begin{enumerate}
+    \item Automated testing for the front-end of the app written in React is something that I have never done before, but will be an essential part of verifying the user interface of the system. From some preliminary research it seems the standard tool for this is Jest. So, I will need to learn how to use this testing framework in order to complete the v\&v plan.
+    \item The two possible approaches I thought of were (1) Learning primarily from documentation and tutorial videos, and (2) Learning through using the tool on a small example project. I believe the best way in this case will be to use a combination of the two approaches: create a small example project to test on, and use the documentation/tutorial videos to support my experimentation.
+\end{enumerate}
+
+Collin
+\begin{enumerate}
+    \item I have some experience with automated testing from my previous co-ops, however I have never worked with any tools for static and front-end testing. There are a significant amount of requirements that will require a form of static testing and I am interested in expanding my knowledge in that area in order to properly test this system. I will also need to learn about Django as this testing tool is a good option for out testing purposes.
+    \item I will read review past course material (e.g. 3RA3) and also read through articles that pertain to static testing. I will also read official tool documentation and watch tutorials on using Django and follow along in order to get first hand experience using the testing tools.
+\end{enumerate}
+
+Christopher
+\begin{enumerate}
+    \item I have experience from my previous internship doing unit testing on the front-end with frameworks like Jest. I'm quite familiar with querying generated web elements and verifying their properties are of what is desired. However, I am not familiar with testing any backend functionality, such as API routes. I've also never used a large fully-fledged testing framework like Cypress, so this will be something I'll need to learn.
+    \item There are many projects I am following, as well as projects I've worked on partially, that have backend systems with testing. I've also worked on projects that switched from Cypress to using purely Jest. Using these past experiences, I can look back at the code and find patterns and correlations from the type of testing I did to the testing I didn't do that I need to learn. I can also use many basic openly available projects that I'm following to read and learn their code to see how Cypress and some Django test cases were built.
+\end{enumerate}
+
+\end{document}

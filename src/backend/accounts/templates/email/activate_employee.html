@@ -1,0 +1,28 @@
+{% load i18n %}
+
+{% block subject %}
+{% blocktrans %}Activate Employee Account on Sayyara {% endblocktrans %}
+{% endblock subject %}
+
+{% block text_body %}
+{% blocktrans %}You're receiving this email because {{ user.first_name }} {{ user.last_name }} invitied you to join their shop on Sayyara{% endblocktrans %}
+
+{% trans "Please go to the following page and complete the registration of your employee account under {{ user.first_name }} {{ user.get_last_name }}'s shop':" %}
+{{ protocol }}://{{ domain }}/{{ url|safe }}
+
+{% trans "Thanks for using our site!" %}
+
+{% blocktrans %}The Sayyara Team{% endblocktrans %}
+{% endblock text_body %}
+
+{% block html_body %}
+<p>{% trans "You're receiving this email because" %} <b>{{ user.first_name }} {{ user.last_name }}</b> {% trans "invited you to join their shop on Sayyara" %}</p>
+
+<p>{% trans "Please go to the following page and complete the registration of your employee account under" %} <b>{{ user.first_name }} {{ user.last_name }}'s</b> {% trans "shop:" %}</p>
+
+<a href="{{ protocol }}://{{ domain }}/{{ url|safe }}">{{ protocol }}://{{ domain }}/{{ url|safe }}</a>
+
+<p>{% trans "Thanks for using our site!" %}</p>
+
+<p>{% blocktrans %}The Sayyara Team{% endblocktrans %}</p>
+{% endblock html_body %}

@@ -1,0 +1,1521 @@
+\documentclass[12pt, titlepage]{article}
+
+\usepackage{amsmath, mathtools}
+
+\usepackage[round]{natbib}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{xr}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{xfrac}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[section]{placeins}
+\usepackage{caption}
+\usepackage{fullpage}
+
+\hypersetup{
+bookmarks=true,     % show bookmarks bar?
+colorlinks=true,       % false: boxed links; true: colored links
+linkcolor=red,          % color of internal links (change box color with linkbordercolor)
+citecolor=blue,      % color of links to bibliography
+filecolor=magenta,  % color of file links
+urlcolor=cyan          % color of external links
+}
+
+\usepackage{array}
+
+\externaldocument{../../SRS/SRS}
+
+\input{../../Comments}
+\input{../../Common}
+
+\begin{document}
+
+\title{Module Interface Specification for \progname{}}
+
+\author{\authname}
+
+\date{\today}
+
+\maketitle
+
+\pagenumbering{roman}
+
+\section*{Revision History}
+
+\begin{table}[H]
+    \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+    \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+    \midrule
+    Jan. 18, 2023 & Rev 0 & Revision 0 \\
+    April 5, 2023 & Rev 1 & Revision 1 \\
+    \bottomrule
+    \end{tabularx}
+    \caption{Revision History}
+\end{table}
+
+~\newpage
+
+% \section*{Symbols, Abbreviations and Acronyms}
+
+% See SRS Documentation at \url{https://github.com/atunney/pwa-capstone/tree/main/docs/SRS}
+
+\newpage
+
+\tableofcontents
+
+\listoftables
+
+\newpage
+
+\pagenumbering{arabic}
+
+\section{Introduction}
+
+The following document details the Module Interface Specifications for Sayyara, a progressive web applications that connects customers with automotive shop owners for vehicle service inquiries, appointment scheduling, and quotes.
+
+\noindent Complementary documents include the System Requirement Specifications
+and Module Guide.  The full documentation and implementation can be
+found at \url{https://github.com/atunney/pwa-capstone/tree/main/docs}.
+
+\section{Module Decomposition}
+
+In the Module Guide document, due to the nature of this project, modules have been separated in categories frontend and backend hiding modules. Many backend modules for the project have a corresponding frontend module that displays the information in a visual format for the user to view and interact with. 
+
+\newpage
+
+\section{MIS of Quotes (Backend)} \label{Module} 
+
+\subsection{Module}
+
+Quotes Backend
+
+\subsection{Uses}
+
+QuoteRequest \\ 
+Shop \\
+ShopService
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+PRIORITIES = ('low', 'medium', 'high') \\
+BOOKING\_STATUS = ('pending', 'canceled', 'booked')
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+    \begin{tabular}{p{5cm} p{6cm} p{2cm} p{4cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    getQuotes & shop: Shop & Quote & NotFound \\
+    updateQuote & id: TextField\newline shop: Shop\newline quote\_request: QuoteRequest\newline services: ShopService\newline status: TextField\newline priority: TextField\newline message: TextField & - & InvalidFields \\
+    createQuote & id: TextField\newline quote\_request: QuoteRequest & - & - \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+shop: Shop \\
+quote\_request: Array: QuoteRequest \\
+services: ShopService \\
+status: TextField \\
+priority: TextField \\
+message: TextField \\
+
+\subsubsection{Environment Variables}
+
+Quotes: Array: Quotes
+QuoteRequests: Array: QuoteRequest
+
+\subsubsection{Assumptions}
+
+\begin{itemize}
+    \item In order for a shop to modify and send updated quotes, a customer needs to send a quote request to said shop.
+    \item All fields in a Quote will originally be filled out by a customer.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getQuotes(shop: Shop):
+\begin{itemize}
+    \item transition: none
+    \item output: Array: Quote in Quotes such that Quote.shop.id == shop.id
+    \item exception: NotFound: no quotes with associated shop
+\end{itemize}
+
+\noindent updateQuote(id: TextField, shop: Shop, quote\_request: QuoteRequest, services: ShopService, status: TextField, priority: TextField, message: TextField):
+\begin{itemize}
+    \item transition: for Quote in Quotes such that Quote.id == id: Quote.shop = shop, Quote.quote\_request = quote\_request, Quote.services = services, Quote.status = status, Quote.priority = priority, Quote.message = message
+    \item output: none
+    \item exception: InvalidFields: one or more of inputs is in invalid format
+\end{itemize}
+
+\noindent createQuote(id: TextField, quote\_request: QuoteRequest):
+\begin{itemize}
+    \item transition: Quotes = Quotes $\cup$ Quote(id = id, quote\_request = quote\_request)
+    \item output: none
+    \item exception: none
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+N/A
+
+\newpage
+
+\section{MIS of QuoteRequest (Backend)} \label{Module}
+
+\subsection{Module}
+
+QuoteRequest Backend
+
+\subsection{Uses}
+
+User \\
+Vehicle
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+    \begin{tabular}{p{4cm} p{6cm} p{3cm} p{2cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    getQuoteRequests & customer: Customer & QuoteRequest & NotFound \\
+    getVehicles & customer: Customer & Vehicle &  NotFound\\
+    updateQuoteRequest & part\_preference: TextField\newline customer: Customer\newline description: TextField\newline images: TextField\newline vehicle: Vehicle\newline availability: TextField & - & InvalidFields \\
+    deleteQuoteRequest & id: TextField & - & NotFound \\
+    createQuoteRequest & part\_preference: TextField\newline customer: Customer\newline description: TextField\newline vehicle: Vehicle\newline availability: TextField & - & InvalidFields \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+id: TextField \\
+part\_preference: TextField \\
+description: TextField \\
+images: TextField \\
+vehicle: Vehicle \\
+created\_at: DateTimeField \\
+availability: TextField
+
+\subsubsection{Environment Variables}
+
+QuoteRequests: Array: QuoteRequest
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getQuoteRequests(customer: Customer):
+\begin{itemize}
+    \item transition: none
+    \item output: Array: QuoteRequest in QuoteRequests such that QuoteRequest.customer.id == customer.id
+    \item exception: NotFound: no quote requests with associated customer
+\end{itemize}
+
+\noindent getVehicles(customer: Customer)
+\begin{itemize}
+    \item transition: none
+    \item output: customer.vehicles
+    \item exception: NotFound: no vehicles with associated customer
+\end{itemize}
+
+\noindent updateQuoteRequest(id: TextField, part\_preference: TextField, description: TextField, images: TextField, vehicle: Vehicle, availability: TextField)
+\begin{itemize}
+    \item transition: for QuoteRequest such that QuoteRequest.id = id: QuoteRequest.part\_preference = part\_preference, QuoteRequest.description = description, QuoteRequest.images = images, QuoteRequest.vehicle = vehicle, QuoteRequest.availability = availability
+    \item output: none
+    \item exception: InvalidFields: one or more of inputs is in invalid format
+\end{itemize}
+
+\noindent deleteQuoteRequest(id: TextField)
+\begin{itemize}
+    \item transition: delete QuoteRequest from QuoteRequests where QuoteRequest.id == id
+    \item output:
+    \item exception: NotFound: no QuoteRequests with associated id 
+\end{itemize}
+
+\noindent createQuoteRequest(id: TextField, part\_preference: TextField, description: TextField, vehicle: Vehicle, availability: TextField)
+\begin{itemize}
+    \item transition: QuoteRequests = QuoteRequests $\cup$ QuoteRequest(id = id, part\_preference = part\_preference, description = description, vehicle = vehicle, availability = availability)
+    \item output: none
+    \item exception: InvalidFields: one or more of inputs is in invalid format
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+N/A
+
+\newpage
+
+\section{MIS of Appointments (Backend)}
+
+\subsection{Module}
+
+Appointment Backend
+
+\subsection{Uses}
+
+Customer \\
+Shop \\
+Quote \\
+EmployeeReservation
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+PRIORITIES = ('low', 'medium', 'high') \\
+BOOKING\_STATUS = ('pending', 'canceled', 'booked')
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+    \begin{tabular}{p{5cm} p{6cm} p{2cm} p{4cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    createAppointment &  data: Appointment & Appointment & - \\
+    updateAppointment & appointment: Appointment\newline title: TextField\newline description: TextField\newline time\_estimate: DurationField\newline price\_estimate: DecimalField\newline quote: Quote\newline message: TextField & - & - \\
+    setStatus & appointment: Appointment\newline status: TextField & - & InvalidFields \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+customer: Customer \\
+shop: Shop \\
+title: TextField \\
+description: TextField \\
+time\_estimate: DurationField \\
+price\_estimate: DecimalField \\
+quote: Quote \\
+message: TextField \\
+
+\subsubsection{Environment Variables}
+
+appointments: Array: Appointment \\
+
+\subsubsection{Assumptions}
+
+\begin{itemize}
+    \item The customer must fill out all relevant fields in the appointment in order to book it.
+    \item An appointment is only valid when a valid quote is supplied along with it.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+createAppointment(customer: Customer, shop: Shop, title: TextField, description: TextField, time\_estimate: DurationField, price\_estimate: DecimalField, quote: Quote, message: TextField):
+\begin{itemize}
+    \item transition: Appointments = Appointments $\cup$ Appointment(customer = customer, shop = shop, title = title, description = description, time\_estimate = time\_estimate, price\_estimate = price\_estimate, quote = quote, message = message)
+    \item output: Appointment
+    \item exception: none
+\end{itemize}
+
+\noindent updateAppointment(appointment: Appointment, title: TextField, description: TextField, time\_estimate: DurationField, price\_estimate: DecimalField, quote: Quote, message: TextField):
+\begin{itemize}
+    \item transition: for Appointment in Appointments such that Appointment.id == appointment.id: Appointment.title = title, Appointment.description = description, Appointment.time\_estimate = time\_estimate, Appointment.price\_estimate = price\_estimate, Appointment.quote = quote, Appointment.message = message
+    \item output: none
+    \item exception: none
+\end{itemize}
+
+\noindent setStatus(appointment: Appointment, status: TextField):
+\begin{itemize}
+    \item transition: for Appointment in Appointments such that Appointment.id == appointment.id, Appointment.status = status
+    \item output: none
+    \item exception: InvalidFields: status is invalid
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+N/A
+
+\newpage 
+
+% \section{MIS of WorkOrder (Backend)}
+
+% \subsection{Module}
+
+% WorkOrder Backend
+
+% \subsection{Uses}
+
+% Appointment \\ 
+% EmployeeReservation \\
+% ShopService \\
+% Part \\
+% WorkBayReservation
+
+% \subsection{Syntax}
+
+% \subsubsection{Exported Constants}
+
+% WORK\_ORDER\_STATUS = (('pending', 'Pending'), ('complete', 'Complete'), ('cancelled', 'Cancelled'))
+
+% \subsubsection{Exported Access Programs}
+
+% \begin{center}
+%     \begin{tabular}{p{5cm} p{8cm} p{2cm} p{2cm}}
+%     \hline
+%     \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+%     \hline
+%     createWorkOrder & workOrderData: WorkOrder & WorkOrder & - \\
+%     updateWorkOrder & work\_order_id: int\newline workOrderData: WorkOrder & - & - \\
+%     listWorkOrder & work\_order_id: int\newline reservations: Reservation & - & - \\
+%     destroyWorkOrder & work\_order_id: int & - & - \\
+%     \hline
+%     \end{tabular}
+% \end{center}
+
+% \subsection{Semantics}
+
+% \subsubsection{State Variables}
+
+% appointments: Appointment \\ 
+% reservations: Array: EmployeeReservation \\ 
+% services: Array: ShopService \\ 
+% parts: Array: Part \\ 
+% workbay\_reservations: Array: WorkBayReservation \\ 
+% status: TextField \\ 
+% work\_description: TextField \\ 
+% total\_price: DecimalField \\ 
+% note: TextField
+
+% \subsubsection{Environment Variables}
+
+% N/A
+% \subsubsection{Assumptions}
+
+% \begin{itemize}
+%     \item In order to create or update a WorkOrder, all necessary fields must be populated.
+%     \item Status of a WorkOrder will be one of the options in WORK\_ORDER\_STATUS.
+% \end{itemize}
+
+% \subsubsection{Access Routine Semantics}
+
+% createWorkOrder(workOrderData: WordOrder):
+% \begin{itemize}
+%     \item transition: none
+%     \item output: WorkOrder
+%     \item exception: none
+% \end{itemize}
+
+% \noindent updateWorkOrder(work\_order\_id: int, data:WorkOrder):
+% \begin{itemize}
+%     \item transition: none
+%     \item output: none
+%     \item exception: none
+% \end{itemize}
+
+% \noindent destroyWorkOrder(work\_order\_id: int):
+% \begin{itemize}
+%     \item transition: none
+%     \item output: none
+%     \item exception: none
+% \end{itemize}
+
+% \noindent listWorkOrder(work\_order\_id: int, reservation: Reservation):
+% \begin{itemize}
+%     \item transition: none
+%     \item output: List[WorOrder]
+%     \item exception: none
+% \end{itemize}
+
+% \subsubsection{Local Functions}
+
+% N/A
+% \newpage
+
+\section{MIS of Shop Quotes (Frontend)} \label{Module} 
+
+\subsection{Module}
+
+Quotes Frontend
+
+\subsection{Uses}
+
+Quotes Backend \\
+QuoteRequest Backend \\
+Shop \\
+ShopService
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+    \begin{tabular}{p{4cm} p{4cm} p{4cm} p{2cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+     getComponent & - & QuotesShop & - \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+shopData: Shop \\
+quoteRequests: Array: QuoteRequest \\
+services: ShopService \\
+status: TextField \\
+priority: TextField \\
+message: TextField \\
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getComponent():
+\begin{itemize}
+\item transition: none
+\item output: QuotesShop
+\item exception:  none
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+setShopData(shop: Shop) \\
+setQuoteRequests(quoteRequests: Array: QuoteRequest) \\
+setServices(services: Array: ShopService) \\
+setStatus(status: TextField) \\
+setPriority(priority: TextField) \\
+setMessage(message: TextField) \\
+
+\newpage
+
+\section{MIS of Customer QuoteRequests (Frontend)} \label{Module}
+
+\subsection{Module}
+
+QuoteRequests Frontend
+
+\subsection{Uses}
+
+QuoteRequests Backend \\
+User \\ 
+Vehicle \\
+Shop
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+    \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+     getComponent & - & QuotesCustomer & - \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+shopData: Array: Shop \\
+userData: Array: User \\
+partPreference: TextField \\
+vehicleData: Array: VehicleMakes \\
+vehicleModels: Array: VehicleModels \\
+vehicleYears: Array: TextField \\
+description: TextField \\
+availability: TextField \\
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getComponent():
+\begin{itemize}
+\item transition: none
+\item output: QuotesCustomer
+\item exception: none
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+setShopData(shop: Shop) \\
+setUserData(user: User) \\
+setPartPreference(preference: TextField) \\
+setVehicleData(vehicleMakes: Vehicle) \\
+setVehicleModels(vehicleModels: Vehicle) \\
+setVehicleYears(years: Array: TextField) \\
+setDescription(description: TextField) \\
+setAvailability(availability: TextField) \\
+
+\newpage
+
+\section{MIS of Shop (Backend)} \label{Module}
+
+\subsection{Module}
+
+Shop Backend
+
+\subsection{Uses}
+User \\
+ShopService
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+    \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    getShop & id : TextField  & Shop & NotFound \\
+    
+    createShop & name : TextField\newline address: TextField\newline email: TextField\newline phone: TextField\newline description: TextField\newline owner: User & - & InvalidFields \\
+    
+    updateShop & id: TextField\newline name : TextField\newline address: TextField\newline email: TextField\newline phone: TextField\newline description: TextField\newline services: Array: ShopService\newline employees: Array: User & - & InvalidFields \\
+    
+    deleteShop & id : TextField  & - & NotFound \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+ 
+id: TextField \\
+owner: User \\
+employees: Array: User \\
+services: Array: ShopService \\
+address: TextField \\ 
+description: TextField \\ 
+email: TextField \\ 
+hours: TextField \\
+name: TextField \\
+phone: TextField \\
+
+\subsubsection{Environment Variables}
+
+Shops: Array: Shop
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getShop(id: TextField):
+\begin{itemize}
+    \item transition: none
+    \item output: Shop in Shops such that Shop.id == id
+    \item exception: NotFound: for every Shop in Shops: Shop.id != id
+\end{itemize}
+
+\noindent createShop(name : TextField, address: TextField, email: TextField, phone: TextField, description: TextField, owner: User):
+\begin{itemize}
+    \item transition: Shops = Shops $\cup$ Shop(name = name, address = address, email = email, phone = phone, description = description, owner = owner)
+    \item output: none
+    \item exception: InvalidFields: one or more of inputs is
+    in invalid format
+\end{itemize}
+
+\noindent updateShop(id: TextField, name : TextField, address: TextField, email: TextField, phone: TextField, description: TextField, services: Array$<$ShopService$>$, employees: Array$<$User$>$):
+\begin{itemize}
+    \item transition: for Shop in Shops such that Shop.id == id: Shop.name = name, Shop.address = address, Shop.email = email, Shop.phone = phone, Shop.description = description, Shop.services = services, Shop.employees = employees
+    \item output: none
+    \item exception: InvalidFields: one or more of inputs is in invalid format
+\end{itemize}
+
+\noindent deleteShop(id: TextField):
+\begin{itemize}
+    \item transition: delete Shop from Shops where Shop.id == id
+    \item output: none
+    \item exception: NotFound: for every ShopService in ShopServices: ShopService.id != id
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+N/A
+
+\newpage
+
+\section{MIS of ShopService (Backend)} \label{Module}
+
+\subsection{Module}
+
+ShopService Backend
+
+\subsection{Uses}
+Service
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+    \begin{tabular}{p{4cm} p{4cm} p{4cm} p{2cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    getShopService & id : TextField & ShopService & NotFound \\
+    
+    createShopService & service : Service\newline est\_time: TextField\newline price: TextField & - & InvalidFields \\
+    
+    updateShopService & id: TextField\newline service : Service\newline est\_time: TextField\newline price: TextField & - & InvalidFields \\
+    
+    deleteShopService & id : TextField  & - & NotFound \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+ 
+id: TextField \\
+service: Service \\
+est\_time : TextField \\
+price: TextField
+
+\subsubsection{Environment Variables}
+
+ShopServices: Array: ShopService
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getShopService(id: TextField):
+\begin{itemize}
+    \item transition: none
+    \item output: ShopService in ShopServices such that ShopService.id == id
+    \item exception: NotFound: for every ShopService in ShopServices: ShopService.id != id
+\end{itemize}
+
+\noindent createShopService(service : Service, est\_time: TextField, price: TextField):
+\begin{itemize}
+    \item transition: ShopServices = ShopServices $\cup$ ShopService(service = service, est\_time = est\_time, price = price)
+    \item output: none
+    \item exception: InvalidFields: one or more of inputs is
+    in invalid format
+\end{itemize}
+
+\noindent updateShopService(id: TextField, service : Service, est\_time: TextField, price: TextField):
+\begin{itemize}
+    \item transition: for ShopService in ShopServices such that ShopService.id == id: ShopService.service = service, Shop.est\_time = est\_time, Shop.price = price
+    \item output: none
+    \item exception: InvalidFields: one or more of inputs is in invalid format
+\end{itemize}
+
+\noindent deleteShop(id: TextField):
+\begin{itemize}
+    \item transition: delete ShopService from ShopServices where ShopService.id == id
+    \item output: none
+    \item exception: NotFound: for every ShopService in ShopServices: Shop.id != id
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+N/A
+
+\newpage
+
+\section{MIS of Service (Backend)} \label{Module}
+
+\subsection{Module}
+
+Service Backend
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+    \begin{tabular}{p{4cm} p{4cm} p{4cm} p{2cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    getService & id : TextField & Service & NotFound \\
+    
+    createService & description : TextField\newline name: TextField\newline & - & InvalidFields \\
+    
+    updateService & id: TextField\newline description : TextField\newline name: TextField\newline & - & InvalidFields \\
+    
+    deleteService & id : TextField  & - & NotFound \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+ 
+id: TextField \\
+description: TextField \\
+name: TextField
+
+\subsubsection{Environment Variables}
+
+Services: Array: Service
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getService(id: TextField):
+\begin{itemize}
+    \item transition: none
+    \item output: Service in Services such that Service.id == id
+    \item exception: NotFound: for every Service in Services: Service.id != id
+\end{itemize}
+
+\noindent createService(description : TextField, name: TextField):
+\begin{itemize}
+    \item transition: Services = Services $\cup$ Service(description = description, name = name)
+    \item output: none
+    \item exception: InvalidFields: one or more of inputs is
+    in invalid format
+\end{itemize}
+
+\noindent updateService(id: TextField, description : TextField, name: TextField):
+\begin{itemize}
+    \item transition: for Service in Services such that Service.id == id: Service.description = description, Shop.name = name
+    \item output: none
+    \item exception: InvalidFields: one or more of inputs is in invalid format
+\end{itemize}
+
+\noindent deleteShop(id: TextField):
+\begin{itemize}
+    \item transition: delete Service from Services where Service.id == id
+    \item output: none
+    \item exception: NotFound: for every Service in Services: Service.id != id
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+N/A
+
+\newpage
+
+\section{MIS of ShopCreate (Frontend)} \label{Module}
+
+\subsection{Module}
+
+ShopCreate Frontend
+
+\subsection{Uses}
+Shop (Backend)
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+    \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    getComponent & - & ShopCreate & - \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+ 
+shopName: TextField \\
+shopAddress: TextField \\ 
+shopEmail: TextField \\
+shopPhone: TextField \\ 
+shopDescription: TextField \\ 
+isShopCreated: boolean \\ 
+isShopCreating: boolean \\ 
+isShopCreationError: boolean \\
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getComponent():
+\begin{itemize}
+    \item transition: none
+    \item output: ShopCreate
+    \item exception: none
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+setShopName(name : TextField): ShopCreate.shopName = name \\
+setShopAddress(address : TextField): ShopCreate.shopAddress = address \\
+setShopEmail(email : TextField): ShopCreate.shopEmail = email \\
+setShopPhone(phone : TextField): ShopCreate.shopPhone = phone \\
+setShopDescription(description : TextField): ShopCreate.shopDescription = description \\
+setIsShopCreated(isCreated : boolean): ShopCreate.isShopCreated = isCreated \\
+setIsShopCreating(isCreating : boolean): ShopCreate.isShopCreating = isCreating \\
+
+\newpage
+
+\section{MIS of ShopLookup (Frontend)} \label{Module}
+
+\subsection{Module}
+ShopLookup Frontend
+
+\subsection{Uses}
+Shop\\
+ShopService\\
+Service
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+    \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    getComponent & - & ShopLookup & - \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+allShops: Array: Shop \\
+queryShops: Array: Shop \\
+searchQuery: TextField \\
+
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getComponent():
+\begin{itemize}
+    \item transition: none
+    \item output: ShopLookup
+    \item exception: none
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+getAllShops() \\
+setAllShops(shops: Array: Shop) \\
+setSearchQuery(query : TextField) \\
+getQueryShops(query : TextField) \\
+setQueryShops(results : Array: Shop) \\
+
+\newpage
+
+\section{MIS of Profile (Backend)} \label{accountsback}
+
+\subsection{Module}
+
+Profile Backend
+
+\subsection{Uses}
+User
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+ACCOUNT\_TYPE: Tuple: ("ShopEmployee", "ShopOwner", "Customer")
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+    \begin{tabular}{p{3cm} p{4cm} p{4cm} p{2cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    getProfile & pk: DecimalField & Profile & NotFound \\
+    updateProfile & pk: DecimalField \newline first\_name: TextField\newline last\_name: TextField \newline email: TextField \newline phone: TextField \newline role: ACCOUNT\_TYPE \newline & Profile & NotFound \newline InvalidFields \\
+    createProfile & username: TextField\newline password: TextField\newline first\_name: TextField\newline last\_name: TextField\newline email: TextField\newline phone: TextField\newline role: ACCOUNT\_TYPE & - & UserExists \newline InvalidFields \\
+    resetRequest & id: TextField\newline email: TextField & token: TextField & InvalidFields\\
+    resetValidate & id: TextField\newline token: TextField & valid: BooleanField & -\\
+    resetConfirm & id: TextField\newline token: TextField \newline password: TextField & - & InvalidToken \newline InvalidFields\\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+role: ACCOUNT\_TYPE\\
+phone: TextField\\
+user: User
+
+\subsubsection{Environment Variables}
+Profiles: Array: Profile
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getProfile(pk: DecimalField):
+\begin{itemize}
+    \item transition: none
+    \item output: Profile in Profiles such that Profile.user.pk == pk
+    \item exception: NotFound - pk does not point to an existing user
+\end{itemize}
+
+\noindent updateProfile(pk: DecimalField, first\_name: TextField, last\_name: TextField, email: TextField, phone: TextField, role: ACCOUNT\_TYPE):
+\begin{itemize}
+    \item transition: for Profile in Profiles such that Profile.user.pk == pk: Profile.phone = phone, profile.user.first\_name = first\_name, profile.user.last\_name=last\_name, profile.user.email = email,
+    profile.role = role
+    \item output: none
+    \item exception: NotFound - pk does not point to an existing user; InvalidFields - any input is empty or contains invalid formatting (phone, email, role)
+\end{itemize}
+
+\noindent createProfile(username: TextField, password: TextField, first\_name: TextField, last\_name: TextField, email: TextField, phone: TextField, role: ACCOUNT\_TYPE):
+\begin{itemize}
+    \item transition: Profiles = Profiles $\cup$ Profile(phone = phone, role = role, User(username = username, password = password, email = email, first\_name = first\_name, last\_name = last\_name))
+    \item output: none
+    \item exception: UserExists - users[pk] already exists; InvalidFields - any input is empty or contains invalid formatting (phone, email, role)
+\end{itemize}
+
+\noindent resetRequest(id: DecimalField, email: TextField):
+\begin{itemize}
+    \item transition: for Profile in Profiles such that Profile.user.pk == id: Profile.user.token = GenerateToken()
+    \item output: for Profile in Profiles such that Profile.user.pk == id: SendResetEmail(email = email, token = Profile.user.token, id = Profile.user.id), return Token
+    \item exception: InvalidFields - email input is incorrectly formatted
+\end{itemize}
+
+\noindent resetValidate(id: DecimalField, token: TextField):
+\begin{itemize}
+    \item transition: none
+    \item output: for Profile in Profiles such that Profile.user.pk == id: return Profile.user.token == token
+    \item exception: N/A
+\end{itemize}
+
+\noindent resetConfirm(id: DecimalField, token: TextField, password: TextField):
+\begin{itemize}
+    \item transition: for Profile in Profiles such that Profile.user.pk == id and Profile.user.token == token: Profile.user.password = password
+    \item output: N/A
+    \item exception: InvalidToken - uid and token cannot be validated; InvalidFields - password is invalidly formatted (password.length $<$ 8 or contains invalid characters)
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+generateToken(): A function that generates and returns a new random Token for verification purposes \\
+SendResetEmail(email: TextField, token: TextField, id: DecimalField): A function that creates a unique URL to a reset password page and emails the URL to the given email
+
+\newpage
+
+\section{MIS of AppContext (Frontend)} \label{appContext}
+
+\subsection{Module}
+
+AppContext Frontend
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+AppWrapper: React.FunctionalComponent
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+    \begin{tabular}{p{3cm} p{4cm} p{4cm} p{2cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    setUser & user: Dictionary & - & - \\
+    setTokens & tokens: Dictionary & - & - \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+user: Dictionary: \{username: TextField, email: TextField, role: TextField, first\_name: TextField, last\_name: TextField, phone: TextField\}\\
+tokens: Dictionary: \{accessToken: TextField, refreshToken: TextField, authStatus: TextField\}\\
+
+\subsubsection{Environment Variables}
+LocalStorage : Dictionary : any
+
+\subsubsection{Assumptions}
+Assume that the Dictionary type of user and tokens corresponds to the detailed Dictionary type shown in the above State Variables section (to avoid reptition and improve readability)
+
+\subsubsection{Access Routine Semantics}
+
+\noindent setUser(user: Dictionary):
+\begin{itemize}
+    \item transition: AppContext.user = user
+    \item output: none
+    \item exception: none
+\end{itemize}
+
+\noindent setTokens(tokens: Dictionary):
+\begin{itemize}
+    \item transition: AppContext.tokens = tokens
+    \item output: none
+    \item exception: none
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+\newpage
+
+\section{MIS of Authentication (Frontend)} \label{auth}
+
+\subsection{Module}
+
+Authentication Frontend
+
+\subsection{Uses}
+AppContext
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+    \begin{tabular}{p{3cm} p{4cm} p{4cm} p{2cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    getComponent & - & Authentication & - \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getComponent():
+\begin{itemize}
+\item transition: none
+\item output: Authentication
+\item exception: none
+\end{itemize}
+
+\subsubsection{Local Functions}
+register(): A function that re-renders this page with account registration instructions \\
+login(message: TextField, type: TextField): A function that re-renders this page with a message \\
+forgotten(): A function that re-renders this page with a form to enter an email to send a reset password link to that email \\
+reset(uid: TextField, token: TextField): A function that re-renders this page with a form to reset the password if the given uid and token are valid from the backend \\
+fetchUserProfile(context: AppContext, token: TextField): A function that updates the context with the user's information from the backend (using the token)
+
+\newpage
+
+\section{MIS of Appointments (Backend)}
+
+\subsection{Module}
+
+Appointments Backend
+
+\subsection{Uses}
+
+Customer \\
+Shop \\
+Quote \\
+EmployeeReservation \\
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{5cm} p{3cm} p{3cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+ getAppointments & customer: Customer\newline shop: Shop & List[Appointment] & ShopNotFound\newline CustomerNotFound \\
+ \hline
+ createAppointment & formData:Appointment & - & ShopNotFound\newline CustomerNotFound \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+    \item customer: Customer
+    \item shop: Shop
+    \item created\_at: DateTimeField 
+    \item title: TextField 
+    \item description: TextField 
+    \item time\_estimate: DurationField 
+    \item price\_estimate: DecimalField 
+    \item quote: Quote 
+    \item message: TextField 
+    \item reservation: EmployeeReservation 
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getAppointment(customer: Customer, shop:Shop):
+\begin{itemize}
+    \item transition: N/A
+    \item output: List[Appointment] where appointment.customer = customer OR appointment.shop = shop
+    \item exception: ShopNotFound, CustomerNotFound
+\end{itemize}
+
+\noindent createAppointment(appointment: Appointment):
+\begin{itemize}
+    \item transition: none
+    \item output: List[Appointment]
+    \item exception: ShopNotFound, CustomerNotFound
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+validateAppointment(instance:Appointment)
+
+\newpage
+\section{MIS for VehicleInfo (Backend)}
+    %\subsection{Module}
+    \subsection{Uses}
+        Vehicle, VehicleSerializer
+    \subsection{Syntax}
+        \subsubsection{Exported Constants}
+            N/A
+        \subsubsection{Exported Access Programs}
+            \begin{center}
+                \begin{tabular}{p{2.5cm} p{4cm} p{4cm} p{3cm}}
+                    \toprule
+                    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+                    \midrule
+                    createVehicle & make : TextField \newline model : TextField \newline year : DecimalField & & \\ \hline
+                    getVehicle & id : DecimalField & vehicle : Vehicle & VehicleNotFound \\ \hline
+                    putVehicle & id : DecimalField \newline make : TextField \newline model : TextField \newline year : DecimalField & & VehicleNotFound \\ \hline
+                    deleteVehicle & id : DecimalField & & VehicleNotFound \\
+                    \bottomrule
+                \end{tabular}
+            \end{center}
+    \subsection{Semantics}
+        \subsubsection{State Variables}
+            \begin{itemize}
+                \item VehicleList: set of Vehicle
+            \end{itemize}
+        \subsubsection{Environment Variables}
+            N/A
+        \subsubsection{Assumptions}
+            \begin{itemize}
+                \item input year is a valid year
+            \end{itemize}
+        \subsubsection{Access Routine Semantics}
+            \noindent createVehicle(make,model,year):
+            \begin{itemize}
+                \item transition: VehicleList.append(new Vehicle(make, model, year))
+            \end{itemize}
+            \noindent getVehicle(id):
+            \begin{itemize}
+                \item output: out := VehicleList(id)
+                \item exception: id $\notin$ VehicleList $\Rightarrow$ VehicleNotFound
+            \end{itemize}
+            \noindent putVehicle(id, make, model, year):
+            \begin{itemize}
+                \item transition: VehicleList(id) := new Vehicle(make, model, year)
+                \item exception: id $\notin$ VehicleList $\Rightarrow$ VehicleNotFound
+            \end{itemize} 
+            \noindent deleteVehicle(id):
+            \begin{itemize}
+                \item transition: VehicleList(id) := $null$
+                \item exception: id $\notin$ VehicleList $\Rightarrow$ VehicleNotFound
+            \end{itemize}
+        \subsubsection{Local Functions}
+            N/A
+
+\newpage
+\section{MIS for CustomerProfile (Frontend)}
+    \subsection{Uses}
+        Auth, AppContext, Profile, Vehicles
+    \subsection{Syntax}
+        \subsubsection{Exported Constants}
+            N/A
+        \subsubsection{Exported Access Programs}
+            \begin{center}
+                \begin{tabular}{p{2.5cm} p{4cm} p{4cm} p{3cm}}
+                    \toprule
+                    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+                    \midrule
+                    setUserInfo & pk : int & & \\
+                    updateUserInfo & username: TextField \newline email: TextField \newline role: TextField \newline first\_name: TextField \newline last\_name: TextField \newline phone: TextField & & \\
+                    \bottomrule
+                \end{tabular}
+            \end{center}
+    \subsection{Semantics}
+        \subsubsection{State Variables}
+            \begin{itemize}
+                \item userInfo : User
+            \end{itemize}
+        \subsubsection{Environment Variables}
+        N/A
+        \subsubsection{Assumptions}
+            \begin{itemize}
+                \item Authentication status and user access tokens are available through the Auth module
+            \end{itemize}
+        \subsubsection{Access Routine Semantics}
+            \noindent setUserInfo(pk):
+            \begin{itemize}
+                \item transition: userInfo := Profile.get(pk)
+            \end{itemize}
+            \noindent updateUserInfo(username, email, TextField, role, first\_name, last\_name, phone):
+            \begin{itemize}
+                \item transition: userInfo := new User(username, email, role, first\_name, last\_name, phone) \newline Profile.update(username, email, role, first\_name, last\_name, phone)
+            \end{itemize}
+        \subsubsection{Local Functions}
+        N/A
+
+\newpage
+\section{MIS for ShopOwnerProfile (Frontend)}
+    \subsection{Uses}
+        Auth, AppContext, User, Profile, Shop, ShopServices
+    \subsection{Syntax}
+        \subsubsection{Exported Constants}
+            N/A
+        \subsubsection{Exported Access Programs}
+            \begin{center}
+                \begin{tabular}{p{3.5cm} p{4cm} p{2cm} p{2.5cm}}
+                    \toprule
+                    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+                    \midrule
+                    setUserInfo & pk : DecimalField & & \\
+                    updateUserInfo & username : TextField \newline email : TextField \newline role : TextField \newline first\_name : TextField \newline last\_name : TextField \newline phone : TextField & & \\
+                    setShopInfo & id : TextField & & \\
+                    updateShopInfo & id : TextField \newline name : TextField \newline address : TextField \newline email : TextField \newline phone : TextField \newline desc : TextField \newline & & \\
+                    setServicesInfo & ids : set of TextField & & \\
+                    updateServicesInfo & id : TextField \newline service : Service \newline est\_time : TextField \newline price : TextField & & \\
+                    \bottomrule
+                \end{tabular}
+            \end{center}
+    \subsection{Semantics}
+        \subsubsection{State Variables}
+            \begin{itemize}
+                \item userInfo : User
+                \item shopInfo : Shop
+                \item services : set of Services
+            \end{itemize}
+        \subsubsection{Environment Variables}
+        N/A
+        \subsubsection{Assumptions}
+        N/A
+        \subsubsection{Access Routine Semantics}
+            \noindent setUserInfo(pk):
+            \begin{itemize}
+                \item transition: userInfo := Profile.get(pk)
+            \end{itemize}
+            \noindent updateUserInfo(username, email, TextField, role, first\_name, last\_name, phone):
+            \begin{itemize}
+                \item transition: userInfo := new User(username, email, role, first\_name, last\_name, phone) \newline Profile.update(username, email, role, first\_name, last\_name, phone)
+            \end{itemize}
+            \noindent setShopInfo(id):
+            \begin{itemize}
+                \item transition: shopInfo := Shop.getShop(id)
+            \end{itemize}
+            \noindent updateShopInfo(id, name, address, email, phone, desc):
+            \begin{itemize}
+                \item transition: shopInfo := new Shop(name, address, email, phone, desc) \newline Shop.updateShop(id, name, address, email, phone, desc)
+            \end{itemize}
+            \noindent setServicesInfo(ids):
+            \begin{itemize}
+                \item transition: $\forall i \in ids : $ services.append(ShopService.getShopService(id))
+            \end{itemize}
+            \noindent updateServicesInfo(id, service, est\_time, price):
+            \begin{itemize}
+                \item transition: services(id) := new Service(service) \newline ShopService.updateShopService(id, service, est\_time, price)
+            \end{itemize}
+        \subsubsection{Local Functions}
+        N/A
+
+\newpage
+\section{MIS for EmployeeProfile (Frontend)}
+    \subsection{Uses}
+        Auth, AppContext, User, Profile, EmployeeAvailability
+    \subsection{Syntax}
+        \subsubsection{Exported Constants}
+        N/A
+        \subsubsection{Exported Access Programs}
+            \begin{center}
+                \begin{tabular}{p{3.5cm} p{4cm} p{2cm} p{2.5cm}}
+                    \toprule
+                    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+                    \midrule
+                    setUserInfo & pk : DecimalField & & \\
+                    setAvailability & & & \\
+                    updateAvailability & & & \\
+                    \bottomrule
+                \end{tabular}
+            \end{center}
+    \subsection{Semantics}
+        \subsubsection{State Variables}
+            \begin{itemize}
+                \item userInfo : User
+            \end{itemize}
+        \subsubsection{Environment Variables}
+        N/A
+        \subsubsection{Assumptions}
+        N/A
+        \subsubsection{Access Routine Semantics}
+        N/A
+            \noindent setUserInfo(pk):
+            \begin{itemize}
+                \item transition: userInfo := Profile.get(pk)
+            \end{itemize}
+            \noindent setAvailability(): \\
+            \noindent updateAvailability():
+        \subsubsection{Local Functions}
+        N/A
+
+\newpage
+\section{MIS for Homepages (Frontend)}
+    \subsection{Uses}
+        Auth, AppContext, User, Profile, Appointments
+    \subsection{Syntax}
+        \subsubsection{Exported Constants}
+        N/A
+        \subsubsection{Exported Access Programs}
+            \begin{center}
+                \begin{tabular}{p{2.5cm} p{4cm} p{4cm} p{3cm}}
+                    \toprule
+                    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+                    \midrule
+                    getUserInfo & id : DecimalField & & \\
+                    getAppointments & customer : User & & \\
+                    \bottomrule
+                \end{tabular}
+            \end{center}
+    \subsection{Semantics}
+        \subsubsection{State Variables}
+            \begin{itemize}
+                \item userInfo : User
+                \item userAppointments : set of Appointment
+            \end{itemize}
+        \subsubsection{Environment Variables}
+        N/A
+        \subsubsection{Assumptions}
+        N/A
+        \subsubsection{Access Routine Semantics}
+            \noindent getUserInfo(id):
+            \begin{itemize}
+                \item transition: userInfo := Profile.get(id)
+            \end{itemize}
+            \noindent getAppointments(customer)
+            \begin{itemize}
+                \item transition: $\forall s \in Shop(id) : $ userAppointments.append(s)
+            \end{itemize}
+        \subsubsection{Local Functions}
+            N/A
+        
+\end{document}

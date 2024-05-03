@@ -1,0 +1,143 @@
+.quoteAlign {
+    padding: 15px 32px;
+    width: 250px;
+    float: right;
+    font-size: 15px;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.buttonStyling {
+    margin: auto;
+    display: grid;
+    padding: 15px 32px;
+    width: 250px;
+    font-size: 15px;
+    float: left;
+}
+
+.columnFilters {
+    position: absolute;
+    transform: translateY(-100%);
+    display: none;
+}
+
+th:hover .columnFilters {
+    display: block;
+}
+
+.submitQuoteStyling {
+    padding: 15px 32px;
+    width: 250px;
+    font-size: 15px;
+    /* display: inline-block; */
+    float: left;
+}
+
+.templateSaveStyling {
+    padding: 15px 32px;
+    width: 250px;
+    font-size: 15px;
+    display: inline-block;
+}
+
+.cancelStyling {
+    padding: 15px 32px;
+    width: 250px;
+    font-size: 15px;
+    display: inline-block;
+}
+
+.tableButtonStyling {
+    padding: 5px 16px;
+    width: 150px;
+    font-size: 15px;
+    display: inline-block;
+}
+
+.enlargedImageContainer {
+    width: max-content;
+    /* height: fit-content; */
+    height: 100%;
+    max-height: 98%;
+    max-width: 98%;
+    z-index: 100 !important;
+}
+
+.enlargeCloseButton {
+    color: #555;
+    cursor: pointer;
+    opacity: 40%;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.enlargeCloseButton:hover {
+    opacity: 70%;
+    transform: scale(1.5);
+    box-shadow: 2px 2px 8px black;
+}
+
+.imageTile {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: center;
+    cursor: pointer;
+
+    transition: transform 0.1s;
+}
+
+.imageTile:hover {
+    transform: scale(1.05);
+    outline: solid 2px rgba(0, 0, 0, 0.2);
+}
+
+.enlargeImage {
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+}
+
+.hoverIcon {
+    opacity: 50%;
+    transition: opacity 0.2s;
+}
+
+.hoverIcon:hover {
+    opacity: 100%;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.vehButton {
+    padding: 5px 16px;
+    font-size: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.quoteNavBar {
+    background-image: linear-gradient(rgba(50, 50, 50, 0.8), rgba(80, 80, 80, 0.8));
+    backdrop-filter: blur(3px);
+}
+
+.quoteNavBar a {
+    color: #ccc;
+}
+
+.quoteNavBar a:hover {
+    color: #cff;
+}
+
+.startDate,
+.endDate {
+    width: 50%;
+    float: left;
+}

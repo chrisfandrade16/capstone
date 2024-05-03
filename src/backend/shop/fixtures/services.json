@@ -1,0 +1,522 @@
+[
+  {
+    "pk": 2,
+    "model": "shop.service",
+    "fields": {
+      "name": "Catalytic Converter Repair/Replacement",
+      "description": "Exhaust services where residual catalytic converter parts remain encased in the crankshaft casting, or slightly damaged by improperly cleaned crankcase or reaction wheel surfaces."
+    }
+  },
+  {
+    "pk": 3,
+    "model": "shop.service",
+    "fields": {
+      "name": "Exhaust Repair/Replacement",
+      "description": "Repair or replace broken or misshapen exhaust system parts, including: fins, emitters, gaskets, cylinders, exhaust pipes, etc."
+    }
+  },
+  {
+    "pk": 4,
+    "model": "shop.service",
+    "fields": {
+      "name": "Exhaust Manifold Repair/Replacement",
+      "description": "Repair or replace broken or mangled exhaust system manifolds by clipping and/or replacing seam gas suppressors."
+    }
+  },
+  {
+    "pk": 5,
+    "model": "shop.service",
+    "fields": {
+      "name": "Muffler Repair/Replacement",
+      "description": "Repair or replace other damaged or misfunctional muffler parts."
+    }
+  },
+  {
+    "pk": 6,
+    "model": "shop.service",
+    "fields": {
+      "name": "Tailpipe Repair/Replacement",
+      "description": "Repair or replace other damaged or misfunctional tailpipe parts."
+    }
+  },
+  {
+    "pk": 7,
+    "model": "shop.service",
+    "fields": {
+      "name": "AC Belt Replacement",
+      "description": "Replacing or repairing AC belts to improve their life."
+    }
+  },
+  {
+    "pk": 8,
+    "model": "shop.service",
+    "fields": {
+      "name": "Compressor Repair/Replacement",
+      "description": "Replacing or repairing modified, overused or misused or missing gas (O2) compressors."
+    }
+  },
+  {
+    "pk": 9,
+    "model": "shop.service",
+    "fields": {
+      "name": "Evaporator Repair/Replacement",
+      "description": "Replacing or repairing evaporators and evaporator bags."
+    }
+  },
+  {
+    "pk": 10,
+    "model": "shop.service",
+    "fields": {
+      "name": "Heating & Cooling System Diagnostics",
+      "description": "Diagnosing or identifying hot and cold evaporator unit issues such as: flue lag, underheating, nozzles, crimping, leaking or cleaning."
+    }
+  },
+  {
+    "pk": 11,
+    "model": "shop.service",
+    "fields": {
+      "name": "Cooling System Repair",
+      "description": "Repairing parts of the cooling system that aren't running highly redundant air/coolant systems, or other, common issues."
+    }
+  },
+  {
+    "pk": 12,
+    "model": "shop.service",
+    "fields": {
+      "name": "Heating System Repair/Replacement",
+      "description": "Repairing a broken or malfunctioning heat exchanger, vector drive, or vector freon converter, or flat-out missing a boost system."
+    }
+  },
+  {
+    "pk": 13,
+    "model": "shop.service",
+    "fields": {
+      "name": "Refrigerant Replacement",
+      "description": "Replacing or repairing refrigerant on air/coolant systems and/or ignition fuel."
+    }
+  },
+  {
+    "pk": 14,
+    "model": "shop.service",
+    "fields": {
+      "name": "Alternator Repair & Replacement",
+      "description": "Repairing/replacing an alternator."
+    }
+  },
+  {
+    "pk": 15,
+    "model": "shop.service",
+    "fields": {
+      "name": "Electrical System Diagnostics & Repair",
+      "description": "Diagnosing or identifying common electrical problems such as fuse blown and distortion in ratings or over voltage/under voltage."
+    }
+  },
+  {
+    "pk": 16,
+    "model": "shop.service",
+    "fields": {
+      "name": "Power Antenna Repair",
+      "description": "Repairing power antenna connectors."
+    }
+  },
+  {
+    "pk": 17,
+    "model": "shop.service",
+    "fields": {
+      "name": "Check Engine Light Diagnostics & Repair",
+      "description": "Using the check-engine light and the inspection light to test engine for smoke, oil, battery problems and other electrical problems."
+    }
+  },
+  {
+    "pk": 18,
+    "model": "shop.service",
+    "fields": {
+      "name": "Light Repair & Bulb Replacement",
+      "description": "Replacing and repairing light bulbs (HOBs) used on electrical systems such as light switches and/or indicator lights."
+    }
+  },
+  {
+    "pk": 19,
+    "model": "shop.service",
+    "fields": {
+      "name": "Power Accessory Repair",
+      "description": "Repairing, exchanging and/or replacing electrical connection accessories such as power cord, lead plug, battery, tensioner and/or fuses."
+    }
+  },
+  {
+    "pk": 20,
+    "model": "shop.service",
+    "fields": {
+      "name": "Power Lock Repair",
+      "description": "Combining the mechanical and electrical parts of a power lock."
+    }
+  },
+  {
+    "pk": 21,
+    "model": "shop.service",
+    "fields": {
+      "name": "Power Steering Repair",
+      "description": "Repairing a power steering system."
+    }
+  },
+  {
+    "pk": 22,
+    "model": "shop.service",
+    "fields": {
+      "name": "Power Window Repair",
+      "description": "Repairing power window's electrical system components."
+    }
+  },
+  {
+    "pk": 23,
+    "model": "shop.service",
+    "fields": {
+      "name": "Windshield Wiper Repair",
+      "description": "Repairing a 'bad load' windshield wiper system"
+    }
+  },
+  {
+    "pk": 24,
+    "model": "shop.service",
+    "fields": {
+      "name": "Axle Repair & Replacement",
+      "description": "Complete repair and replacement of axles."
+    }
+  },
+  {
+    "pk": 25,
+    "model": "shop.service",
+    "fields": {
+      "name": "Clutch Repair & Replacement",
+      "description": "Complete repair and replacement of clutches."
+    }
+  },
+  {
+    "pk": 26,
+    "model": "shop.service",
+    "fields": {
+      "name": "Differential Diagnosis",
+      "description": "Identifying or diagnosing problems with the differential flange."
+    }
+  },
+  {
+    "pk": 27,
+    "model": "shop.service",
+    "fields": {
+      "name": "Differential Rebuild & Service",
+      "description": "Troubleshooting disc pads and rotating surfaces to analyze wear patterns and/or performance."
+    }
+  },
+  {
+    "pk": 28,
+    "model": "shop.service",
+    "fields": {
+      "name": "Driveline Repair & Maintenance",
+      "description": "Complete driveline repairs and maintenance."
+    }
+  },
+  {
+    "pk": 29,
+    "model": "shop.service",
+    "fields": {
+      "name": "Driveshaft & U-Joint Repair",
+      "description": "Complete driveline & driveshaft repairs and maintenance."
+    }
+  },
+  {
+    "pk": 30,
+    "model": "shop.service",
+    "fields": {
+      "name": "Flywheel Repair & Replacement",
+      "description": "Repair or replace flywheels."
+    }
+  },
+  {
+    "pk": 31,
+    "model": "shop.service",
+    "fields": {
+      "name": "Transmission Fluid Service",
+      "description": "Repairing, replacing and/or replacing transmission fluid and/or additives."
+    }
+  },
+  {
+    "pk": 32,
+    "model": "shop.service",
+    "fields": {
+      "name": "Transmission Flush",
+      "description": "Installing new transmission fluid."
+    }
+  },
+  {
+    "pk": 33,
+    "model": "shop.service",
+    "fields": {
+      "name": "Transmission Repair & Service",
+      "description": "Replacement and/or repair of damaged, or mis-shaped or incomplete transmission parts."
+    }
+  },
+  {
+    "pk": 34,
+    "model": "shop.service",
+    "fields": {
+      "name": "Transmission Replacement",
+      "description": "Replacing or transferring defective, cracked or damaged parts of a transmission to improve performance."
+    }
+  },
+  {
+    "pk": 35,
+    "model": "shop.service",
+    "fields": {
+      "name": "Wheel Balancing",
+      "description": "Repairing, replacing and repairing wheels to achieve more balanced operation."
+    }
+  },
+  {
+    "pk": 36,
+    "model": "shop.service",
+    "fields": {
+      "name": "Tire Installation",
+      "description": "Attaching, inserting, or adjusting a tire in a tire-mounted vehicle or in a tire-mounted vehicle."
+    }
+  },
+  {
+    "pk": 37,
+    "model": "shop.service",
+    "fields": {
+      "name": "Tire Replacement",
+      "description": "Replacing a tire or a complete tire set - such as a car, truck, van, or SUV."
+    }
+  },
+  {
+    "pk": 38,
+    "model": "shop.service",
+    "fields": {
+      "name": "Tire Rotation",
+      "description": "Complete tire rotation service."
+    }
+  },
+  {
+    "pk": 39,
+    "model": "shop.service",
+    "fields": {
+      "name": "Wheel Alignment",
+      "description": "Aligning the wheels to meet a higher level of specification or to adjust everything on the vehicle properly and according to expectations."
+    }
+  },
+  {
+    "pk": 40,
+    "model": "shop.service",
+    "fields": {
+      "name": "Flat Tire Repair",
+      "description": "Replacing or repairing punctured tires using plugs, patches and/or sealant."
+    }
+  },
+  {
+    "pk": 41,
+    "model": "shop.service",
+    "fields": {
+      "name": "Season Tire Change",
+      "description": "Swapping summer/winter tires on and off of a vehicle."
+    }
+  },
+  {
+    "pk": 42,
+    "model": "shop.service",
+    "fields": {
+      "name": "Curb rash repair",
+      "description": "Repairing a bad 'curb rash' on a wheel or rim."
+    }
+  },
+  {
+    "pk": 43,
+    "model": "shop.service",
+    "fields": {
+      "name": "Wheel refinishing/Rim Repair",
+      "description": "Repairing (or replacing) wheels and/or rims."
+    }
+  },
+  {
+    "pk": 44,
+    "model": "shop.service",
+    "fields": {
+      "name": "Timing Belt Repair/Replacement",
+      "description": "Replacing or repairing timing belts."
+    }
+  },
+  {
+    "pk": 45,
+    "model": "shop.service",
+    "fields": {
+      "name": "Serpentine Belt Repair/Replacement",
+      "description": "Replacing or repairing serpentine belts."
+    }
+  },
+  {
+    "pk": 46,
+    "model": "shop.service",
+    "fields": {
+      "name": "Drivability Diagnostics & Repair",
+      "description": "Repairing, exchanging and/or repairing drive shaft or drive internals such as a crankshaft, or an intermediate shaft or a differential cover."
+    }
+  },
+  {
+    "pk": 47,
+    "model": "shop.service",
+    "fields": {
+      "name": "Engine Repair",
+      "description": "Replacing or repairing engine parts."
+    }
+  },
+  {
+    "pk": 48,
+    "model": "shop.service",
+    "fields": {
+      "name": "Engine Replacement",
+      "description": "Replacing or repairing a failed or malfunctioning engine with a more powerful or specific engine - such as diesel engine, gas engine, or an air-engine."
+    }
+  },
+  {
+    "pk": 49,
+    "model": "shop.service",
+    "fields": {
+      "name": "Engine Performance Check",
+      "description": "Replacing or repairing parts related to the engine performance check's electrical connection or engine controller."
+    }
+  },
+  {
+    "pk": 50,
+    "model": "shop.service",
+    "fields": {
+      "name": "Fuel Injection Repair & Service",
+      "description": "Repairing, replacing and/or replacing fuel injector systems and/or filters."
+    }
+  },
+  {
+    "pk": 51,
+    "model": "shop.service",
+    "fields": {
+      "name": "Fuel System Repair & Maintenance",
+      "description": "Repairing, replacing and/or repairing fuel system parts such as fuel tank, fuel gauge, gas tank, gas pump, gas door and/or gas hood."
+    }
+  },
+  {
+    "pk": 52,
+    "model": "shop.service",
+    "fields": {
+      "name": "Hose Replacement",
+      "description": "Replacing and/or repairing rubber hoses and/or vacuum lines."
+    }
+  },
+  {
+    "pk": 53,
+    "model": "shop.service",
+    "fields": {
+      "name": "Ignition System Repair & Maintenance",
+      "description": "Complete ignition system repairs and maintenance."
+    }
+  },
+  {
+    "pk": 54,
+    "model": "shop.service",
+    "fields": {
+      "name": "Radiator Repair & Replacement",
+      "description": "Departure or repair of radiators for maintenance."
+    }
+  },
+  {
+    "pk": 55,
+    "model": "shop.service",
+    "fields": {
+      "name": "Water Pump Repair & Replacement",
+      "description": "Complete repair and replacement of water pumps."
+    }
+  },
+  {
+    "pk": 56,
+    "model": "shop.service",
+    "fields": {
+      "name": "Brake Pad Replacement",
+      "description": "Complete repair and replacement of brake pads."
+    }
+  },
+  {
+    "pk": 57,
+    "model": "shop.service",
+    "fields": {
+      "name": "Brake Calliper service",
+      "description": "Complete repair and replacement of brake callipers."
+    }
+  },
+  {
+    "pk": 58,
+    "model": "shop.service",
+    "fields": {
+      "name": "Brake fluid leak",
+      "description": "Replacing or repairing brake fluid hose, drain plug and/or bolts."
+    }
+  },
+  {
+    "pk": 59,
+    "model": "shop.service",
+    "fields": {
+      "name": "Disk rotor resurface",
+      "description": "Resurfacing disk rotors to improve operation."
+    }
+  },
+  {
+    "pk": 60,
+    "model": "shop.service",
+    "fields": {
+      "name": "Shocks & Struts Repair",
+      "description": "Complete repair and replacement of shock absorbers."
+    }
+  },
+  {
+    "pk": 61,
+    "model": "shop.service",
+    "fields": {
+      "name": "Ball joint replacement",
+      "description": "Ball joint replacement."
+    }
+  },
+  {
+    "pk": 62,
+    "model": "shop.service",
+    "fields": {
+      "name": "Factory Scheduled Maintenance",
+      "description": "Fully implement factory warranties or warranty extensions."
+    }
+  },
+  {
+    "pk": 63,
+    "model": "shop.service",
+    "fields": {
+      "name": "Filter Replacements",
+      "description": "Replacing engine and/or cabin air filters."
+    }
+  },
+  {
+    "pk": 64,
+    "model": "shop.service",
+    "fields": {
+      "name": "12 point Inspection",
+      "description": "Performing 12-point inspections, including: visual inspections, oil checks, pressure checks, and more."
+    }
+  },
+  {
+    "pk": 65,
+    "model": "shop.service",
+    "fields": {
+      "name": "Oil Change",
+      "description": "Draining old oil out of the engine system and replenishing it with new oil."
+    }
+  },
+  {
+    "pk": 66,
+    "model": "shop.service",
+    "fields": {
+      "name": "Windshield Wiper Blades",
+      "description": "Replacing or repairing windshield wiper blades to improve safety."
+    }
+  }
+]

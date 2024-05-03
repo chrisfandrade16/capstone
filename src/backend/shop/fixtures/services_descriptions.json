@@ -1,0 +1,90 @@
+{
+    "Exhaust Services":[
+        {"name": "Catalytic Converter Repair/Replacement", "description": "Exhaust services where residual catalytic converter parts remain encased in the crankshaft casting, or slightly damaged by improperly cleaned crankcase or reaction wheel surfaces."}, 
+        {"name": "Exhaust Repair/Replacement", "description": "Repair or replace broken or misshapen exhaust system parts, including: fins, emitters, gaskets, cylinders, exhaust pipes, etc."}, 
+        {"name": "Exhaust Manifold Repair/Replacement", "description": "Repair or replace broken or mangled exhaust system manifolds by clipping and/or replacing seam gas suppressors."}, 
+        {"name": "Muffler Repair/Replacement", "description": "Repair or replace other damaged or misfunctional muffler parts."}, 
+        {"name": "Tailpipe Repair/Replacement", "description": "Repair or replace other damaged or misfunctional tailpipe parts."}
+    ],
+
+    "Heating & Air Conditioner Repair":[
+        {"name": "AC Belt Replacement", "description": "Replacing or repairing AC belts to improve their life."}, 
+        {"name": "Compressor Repair/Replacement", "description": "Replacing or repairing modified, overused or misused or missing gas (O2) compressors."}, 
+        {"name": "Evaporator Repair/Replacement", "description": "Replacing or repairing evaporators and evaporator bags."}, 
+        {"name": "Heating & Cooling System Diagnostics", "description": "Diagnosing or identifying hot and cold evaporator unit issues such as: flue lag, underheating, nozzles, crimping, leaking or cleaning."}, 
+        {"name": "Cooling System Repair", "description": "Repairing parts of the cooling system that aren't running highly redundant air/coolant systems, or other, common issues."}, 
+        {"name": "Heating System Repair/Replacement", "description": "Repairing a broken or malfunctioning heat exchanger, vector drive, or vector freon converter, or flat-out missing a boost system."}, 
+        {"name": "Refrigerant Replacement", "description": "Replacing or repairing refrigerant on air/coolant systems and/or ignition fuel."}
+    ],
+
+    "Electrical Services":[
+        {"name": "Alternator Repair & Replacement", "description": "Repairing/replacing an alternator."}, 
+        {"name": "Electrical System Diagnostics & Repair", "description": "Diagnosing or identifying common electrical problems such as fuse blown and distortion in ratings or over voltage/under voltage."}, 
+        {"name": "Power Antenna Repair", "description": "Repairing power antenna connectors."}, 
+        {"name": "Check Engine Light Diagnostics & Repair", "description": "Using the check-engine light and the inspection light to test engine for smoke, oil, battery problems and other electrical problems."}, 
+        {"name": "Light Repair & Bulb Replacement", "description": "Replacing and repairing light bulbs (HOBs) used on electrical systems such as light switches and/or indicator lights."}, 
+        {"name": "Power Accessory Repair", "description": "Repairing, exchanging and/or replacing electrical connection accessories such as power cord, lead plug, battery, tensioner and/or fuses."}, 
+        {"name": "Power Lock Repair", "description": "Combining the mechanical and electrical parts of a power lock."}, 
+        {"name": "Power Steering Repair", "description": "Repairing a power steering system."}, 
+        {"name": "Power Window Repair", "description": "Repairing power window's electrical system components."}, 
+        {"name": "Windshield Wiper Repair", "description": "Repairing a 'bad load' windshield wiper system"}
+    ],
+
+    "Transmission Services":[
+        {"name": "Axle Repair & Replacement", "description": "Complete repair and replacement of axles."}, 
+        {"name": "Clutch Repair & Replacement", "description": "Complete repair and replacement of clutches."}, 
+        {"name": "Differential Diagnosis", "description": "Identifying or diagnosing problems with the differential flange."}, 
+        {"name": "Differential Rebuild & Service", "description": "Troubleshooting disc pads and rotating surfaces to analyze wear patterns and/or performance."}, 
+        {"name": "Driveline Repair & Maintenance", "description": "Complete driveline repairs and maintenance."}, 
+        {"name": "Driveshaft & U-Joint Repair", "description": "Complete driveline & driveshaft repairs and maintenance."}, 
+        {"name": "Flywheel Repair & Replacement", "description": "Repair or replace flywheels."}, 
+        {"name": "Transmission Fluid Service", "description": "Repairing, replacing and/or replacing transmission fluid and/or additives."}, 
+        {"name": "Transmission Flush", "description": "Installing new transmission fluid."}, 
+        {"name": "Transmission Repair & Service", "description": "Replacement and/or repair of damaged, or mis-shaped or incomplete transmission parts."}, 
+        {"name": "Transmission Replacement", "description": "Replacing or transferring defective, cracked or damaged parts of a transmission to improve performance."} 
+    ],
+
+    "Tire Services":[
+        {"name": "Wheel Balancing", "description": "Repairing, replacing and repairing wheels to achieve more balanced operation."}, 
+        {"name": "Tire Installation", "description": "Attaching, inserting, or adjusting a tire in a tire-mounted vehicle or in a tire-mounted vehicle."}, 
+        {"name": "Tire Replacement", "description": "Replacing a tire or a complete tire set - such as a car, truck, van, or SUV."}, 
+        {"name": "Tire Rotation", "description": "Complete tire rotation service."}, 
+        {"name": "Wheel Alignment", "description": "Aligning the wheels to meet a higher level of specification or to adjust everything on the vehicle properly and according to expectations."}, 
+        {"name": "Flat Tire Repair", "description": "Replacing or repairing punctured tires using plugs, patches and/or sealant."}, 
+        {"name": "Season Tire Change", "description": "Swapping summer/winter tires on and off of a vehicle."}, 
+        {"name": "Curb rash repair", "description": "Repairing a bad 'curb rash' on a wheel or rim."}, 
+        {"name": "Wheel refinishing/Rim Repair", "description": "Repairing (or replacing) wheels and/or rims."} 
+    ],
+
+    "Engine Services":[
+        {"name": "Timing Belt Repair/Replacement", "description": "Replacing or repairing timing belts."}, 
+        {"name": "Serpentine Belt Repair/Replacement", "description": "Replacing or repairing serpentine belts."}, 
+        {"name": "Drivability Diagnostics & Repair", "description": "Repairing, exchanging and/or repairing drive shaft or drive internals such as a crankshaft, or an intermediate shaft or a differential cover."}, 
+        {"name": "Engine Repair", "description": "Replacing or repairing engine parts."}, 
+        {"name": "Engine Replacement", "description": "Replacing or repairing a failed or malfunctioning engine with a more powerful or specific engine - such as diesel engine, gas engine, or an air-engine."}, 
+        {"name": "Engine Performance Check", "description": "Replacing or repairing parts related to the engine performance check's electrical connection or engine controller."}, 
+        {"name": "Fuel Injection Repair & Service", "description": "Repairing, replacing and/or replacing fuel injector systems and/or filters."}, 
+        {"name": "Fuel System Repair & Maintenance", "description": "Repairing, replacing and/or repairing fuel system parts such as fuel tank, fuel gauge, gas tank, gas pump, gas door and/or gas hood."}, 
+        {"name": "Hose Replacement", "description": "Replacing and/or repairing rubber hoses and/or vacuum lines."}, 
+        {"name": "Ignition System Repair & Maintenance", "description": "Complete ignition system repairs and maintenance."}, 
+        {"name": "Radiator Repair & Replacement", "description": "Departure or repair of radiators for maintenance."}, 
+        {"name": "Water Pump Repair & Replacement", "description": "Complete repair and replacement of water pumps."} 
+    ],
+
+    "Brake System": [
+        {"name": "Brake Pad Replacement", "description": "Complete repair and replacement of brake pads."}, 
+        {"name": "Brake Calliper service", "description": "Complete repair and replacement of brake callipers."}, 
+        {"name": "Brake fluid leak", "description": "Replacing or repairing brake fluid hose, drain plug and/or bolts."}, 
+        {"name": "Disk rotor resurface", "description": "Resurfacing disk rotors to improve operation."} 
+    ],
+
+    "Maintenance Services" :[
+        {"name": "Shocks & Struts Repair", "description": "Complete repair and replacement of shock absorbers."}, 
+        {"name": "Ball joint replacement", "description": "Ball joint replacement."}, 
+        {"name": "Factory Scheduled Maintenance", "description": "Fully implement factory warranties or warranty extensions."}, 
+        {"name": "Filter Replacements", "description": "Replacing engine and/or cabin air filters."}, 
+        {"name": "12 point Inspection", "description": "Performing 12-point inspections, including: visual inspections, oil checks, pressure checks, and more."}, 
+        {"name": "Oil Change", "description": "Draining old oil out of the engine system and replenishing it with new oil."}, 
+        {"name": "Windshield Wiper Blades", "description": "Replacing or repairing windshield wiper blades to improve safety."}
+    ]
+}

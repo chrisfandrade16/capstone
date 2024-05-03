@@ -1,0 +1,330 @@
+[
+  {
+    "model": "shop.employeeavailability",
+    "pk": 1,
+    "fields": {
+      "start_date": "2023-03-12",
+      "start_time": "06:00:00",
+      "end_time": "18:00:00",
+      "recurrence": "RRULE:FREQ=WEEKLY;COUNT=30",
+      "created_at": "2023-03-12T22:30:10.917Z",
+      "updated_at": "2023-03-12T22:30:10.917Z",
+      "timezone": "Canada/Eastern",
+      "employee": 8
+    }
+  },
+  {
+    "model": "shop.employeeavailability",
+    "pk": 2,
+    "fields": {
+      "start_date": "2023-03-12",
+      "start_time": "06:00:00",
+      "end_time": "18:00:00",
+      "recurrence": "RRULE:FREQ=WEEKLY;COUNT=30",
+      "created_at": "2023-03-12T22:30:10.917Z",
+      "updated_at": "2023-03-12T22:30:10.917Z",
+      "timezone": "Canada/Eastern",
+      "employee": 9
+    }
+  },
+  {
+    "model": "shop.employeeavailability",
+    "pk": 3,
+    "fields": {
+      "start_date": "2023-03-12",
+      "start_time": "06:00:00",
+      "end_time": "18:00:00",
+      "recurrence": "RRULE:FREQ=WEEKLY;COUNT=30",
+      "created_at": "2023-03-12T22:30:10.917Z",
+      "updated_at": "2023-03-12T22:30:10.917Z",
+      "timezone": "Canada/Eastern",
+      "employee": 10
+    }
+  },
+  {
+    "model": "shop.employeeavailability",
+    "pk": 4,
+    "fields": {
+      "start_date": "2023-03-12",
+      "start_time": "06:00:00",
+      "end_time": "18:00:00",
+      "recurrence": "RRULE:FREQ=WEEKLY;COUNT=30",
+      "created_at": "2023-03-12T22:30:10.917Z",
+      "updated_at": "2023-03-12T22:30:10.917Z",
+      "timezone": "Canada/Eastern",
+      "employee": 11
+    }
+  },
+  {
+    "model": "shop.employeeavailability",
+    "pk": 5,
+    "fields": {
+      "start_date": "2023-03-12",
+      "start_time": "06:00:00",
+      "end_time": "18:00:00",
+      "recurrence": "RRULE:FREQ=WEEKLY;COUNT=30",
+      "created_at": "2023-03-12T22:30:10.917Z",
+      "updated_at": "2023-03-12T22:30:10.917Z",
+      "timezone": "Canada/Eastern",
+      "employee": 12
+    }
+  },
+  {
+    "model": "shop.employeeavailability",
+    "pk": 6,
+    "fields": {
+      "start_date": "2023-03-12",
+      "start_time": "06:00:00",
+      "end_time": "18:00:00",
+      "recurrence": "RRULE:FREQ=WEEKLY;COUNT=30",
+      "created_at": "2023-03-12T22:30:10.917Z",
+      "updated_at": "2023-03-12T22:30:10.917Z",
+      "timezone": "Canada/Eastern",
+      "employee": 13
+    }
+  },
+  {
+    "model": "shop.employeeavailability",
+    "pk": 7,
+    "fields": {
+      "start_date": "2023-03-12",
+      "start_time": "06:00:00",
+      "end_time": "18:00:00",
+      "recurrence": "RRULE:FREQ=WEEKLY;COUNT=30",
+      "created_at": "2023-03-12T22:30:10.917Z",
+      "updated_at": "2023-03-12T22:30:10.917Z",
+      "timezone": "Canada/Eastern",
+      "employee": 14
+    }
+  },
+  {
+    "model": "shop.employeeavailability",
+    "pk": 8,
+    "fields": {
+      "start_date": "2023-03-12",
+      "start_time": "06:00:00",
+      "end_time": "18:00:00",
+      "recurrence": "RRULE:FREQ=WEEKLY;COUNT=30",
+      "created_at": "2023-03-12T22:30:10.917Z",
+      "updated_at": "2023-03-12T22:30:10.917Z",
+      "timezone": "Canada/Eastern",
+      "employee": 15
+    }
+  },
+  {
+    "model": "shop.employeereservation",
+    "pk": "c040aa37-94fc-4879-91db-71d3de1ff44e",
+    "fields": {
+      "add_date": "2023-03-12T22:30:10.917Z",
+      "edit_date": "2023-03-12T22:30:10.917Z",
+      "duration": "00:49:00",
+      "padding": "",
+      "time": "2023-03-12T22:30:10.917Z",
+      "state": "UNC",
+      "schedule": 8
+    }
+  },
+  {
+    "model": "shop.employeereservation",
+    "pk": "e8745063-9301-485f-814b-4536d4536f31",
+    "fields": {
+      "add_date": "2023-03-12T22:30:10.917Z",
+      "edit_date": "2023-03-12T22:30:10.917Z",
+      "duration": "00:19:00",
+      "padding": "",
+      "time": "2023-03-12T22:30:10.917Z",
+      "state": "UNC",
+      "schedule": 9
+    }
+  },
+  {
+    "model": "shop.employeereservation",
+    "pk": "ea38ae6d-d1dc-4474-b367-324312d2d590",
+    "fields": {
+      "add_date": "2023-03-12T22:30:10.917Z",
+      "edit_date": "2023-03-12T22:30:10.917Z",
+      "duration": "00:20:00",
+      "padding": "",
+      "time": "2023-03-12T22:30:10.917Z",
+      "state": "UNC",
+      "schedule": 10
+    }
+  },
+  {
+    "model": "shop.employeereservation",
+    "pk": "6088b6a7-3404-4c1f-867d-adc7cfa1eacd",
+    "fields": {
+      "add_date": "2023-03-12T22:30:10.917Z",
+      "edit_date": "2023-03-12T22:30:10.917Z",
+      "duration": "00:47:00",
+      "padding": "",
+      "time": "2023-03-12T22:30:10.917Z",
+      "state": "UNC",
+      "schedule": 11
+    }
+  },
+  {
+    "model": "shop.employeereservation",
+    "pk": "943e57fb-a8b0-4208-8a4c-197132b3cdc3",
+    "fields": {
+      "add_date": "2023-03-12T22:30:10.917Z",
+      "edit_date": "2023-03-12T22:30:10.917Z",
+      "duration": "00:43:00",
+      "padding": "",
+      "time": "2023-03-12T22:30:10.917Z",
+      "state": "UNC",
+      "schedule": 12
+    }
+  },
+  {
+    "model": "shop.employeereservation",
+    "pk": "5e7c6630-2a13-4b45-bdca-b048d925dfdf",
+    "fields": {
+      "add_date": "2023-03-12T22:30:10.917Z",
+      "edit_date": "2023-03-12T22:30:10.917Z",
+      "duration": "00:56:00",
+      "padding": "",
+      "time": "2023-03-12T22:30:10.917Z",
+      "state": "UNC",
+      "schedule": 13
+    }
+  },
+  {
+    "model": "shop.employeereservation",
+    "pk": "ba58c0bc-0065-401d-9ddc-befae2ffcc9b",
+    "fields": {
+      "add_date": "2023-03-12T22:30:10.917Z",
+      "edit_date": "2023-03-12T22:30:10.917Z",
+      "duration": "00:50:00",
+      "padding": "",
+      "time": "2023-03-12T22:30:10.917Z",
+      "state": "UNC",
+      "schedule": 14
+    }
+  },
+  {
+    "model": "shop.employeereservation",
+    "pk": "a419d0a1-df72-4262-a8b9-bbb8bb6cfe3c",
+    "fields": {
+      "add_date": "2023-03-12T22:30:10.917Z",
+      "edit_date": "2023-03-12T22:30:10.917Z",
+      "duration": "00:52:00",
+      "padding": "",
+      "time": "2023-03-12T22:30:10.917Z",
+      "state": "UNC",
+      "schedule": 15
+    }
+  },
+  {
+    "model": "shop.appointment",
+    "pk": "1",
+    "fields": {
+      "created_at": "2023-03-12T22:30:10.917Z",
+      "quote": 7,
+      "title": "A job long ",
+      "description": "Stuff",
+      "time_estimate": "01:00:00",
+      "price_estimate": "927",
+      "message": "Hello?",
+      "reservation": "c040aa37-94fc-4879-91db-71d3de1ff44e"
+    }
+  },
+  {
+    "model": "shop.appointment",
+    "pk": "2",
+    "fields": {
+      "created_at": "2023-03-12T22:30:10.917Z",
+      "quote": 4,
+      "title": "A job long long ",
+      "description": "Stuff",
+      "time_estimate": "01:00:00",
+      "price_estimate": "573",
+      "message": "Hello?",
+      "reservation": "e8745063-9301-485f-814b-4536d4536f31"
+    }
+  },
+  {
+    "model": "shop.appointment",
+    "pk": "3",
+    "fields": {
+      "created_at": "2023-03-12T22:30:10.917Z",
+      "quote": 10,
+      "title": "A job long long long ",
+      "description": "Stuff",
+      "time_estimate": "01:00:00",
+      "price_estimate": "100",
+      "message": "Hello?",
+      "reservation": "ea38ae6d-d1dc-4474-b367-324312d2d590"
+    }
+  },
+  {
+    "model": "shop.appointment",
+    "pk": "4",
+    "fields": {
+      "created_at": "2023-03-12T22:30:10.917Z",
+      "quote": 5,
+      "title": "A job long long long long ",
+      "description": "Stuff",
+      "time_estimate": "01:00:00",
+      "price_estimate": "768",
+      "message": "Hello?",
+      "reservation": "6088b6a7-3404-4c1f-867d-adc7cfa1eacd"
+    }
+  },
+  {
+    "model": "shop.appointment",
+    "pk": "5",
+    "fields": {
+      "created_at": "2023-03-12T22:30:10.917Z",
+      "quote": 10,
+      "title": "A job long long long long long ",
+      "description": "Stuff",
+      "time_estimate": "01:00:00",
+      "price_estimate": "152",
+      "message": "Hello?",
+      "reservation": "943e57fb-a8b0-4208-8a4c-197132b3cdc3"
+    }
+  },
+  {
+    "model": "shop.appointment",
+    "pk": "6",
+    "fields": {
+      "created_at": "2023-03-12T22:30:10.917Z",
+      "quote": 11,
+      "title": "A job long long long long long long ",
+      "description": "Stuff",
+      "time_estimate": "01:00:00",
+      "price_estimate": "611",
+      "message": "Hello?",
+      "reservation": "5e7c6630-2a13-4b45-bdca-b048d925dfdf"
+    }
+  },
+  {
+    "model": "shop.appointment",
+    "pk": "7",
+    "fields": {
+      "created_at": "2023-03-12T22:30:10.917Z",
+      "quote": 2,
+      "title": "A job long long long long long long long ",
+      "description": "Stuff",
+      "time_estimate": "01:00:00",
+      "price_estimate": "882",
+      "message": "Hello?",
+      "reservation": "ba58c0bc-0065-401d-9ddc-befae2ffcc9b"
+    }
+  },
+  {
+    "model": "shop.appointment",
+    "pk": "8",
+    "fields": {
+      "created_at": "2023-03-12T22:30:10.917Z",
+      "quote": 1,
+      "title": "A job long long long long long long long long ",
+      "description": "Stuff",
+      "time_estimate": "01:00:00",
+      "price_estimate": "202",
+      "message": "Hello?",
+      "reservation": "a419d0a1-df72-4262-a8b9-bbb8bb6cfe3c"
+    }
+  }
+]

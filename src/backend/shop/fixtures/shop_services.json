@@ -1,0 +1,596 @@
+[
+  {
+    "model": "shop.shopservice",
+    "pk": 1,
+    "fields": {
+      "service": 64,
+      "price": 1744,
+      "est_time": "01:30:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 2,
+    "fields": {
+      "service": 37,
+      "price": 1904,
+      "est_time": "00:50:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 3,
+    "fields": {
+      "service": 49,
+      "price": 1097,
+      "est_time": "02:52:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 4,
+    "fields": {
+      "service": 55,
+      "price": 1208,
+      "est_time": "00:52:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 5,
+    "fields": {
+      "service": 2,
+      "price": 108,
+      "est_time": "00:25:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 6,
+    "fields": {
+      "service": 48,
+      "price": 1862,
+      "est_time": "00:44:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 7,
+    "fields": {
+      "service": 51,
+      "price": 2500,
+      "est_time": "00:37:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 8,
+    "fields": {
+      "service": 64,
+      "price": 1297,
+      "est_time": "01:29:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 9,
+    "fields": {
+      "service": 22,
+      "price": 1692,
+      "est_time": "02:28:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 10,
+    "fields": {
+      "service": 32,
+      "price": 2019,
+      "est_time": "00:56:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 11,
+    "fields": {
+      "service": 53,
+      "price": 958,
+      "est_time": "01:21:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 12,
+    "fields": {
+      "service": 31,
+      "price": 2035,
+      "est_time": "01:34:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 13,
+    "fields": {
+      "service": 57,
+      "price": 2002,
+      "est_time": "00:22:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 14,
+    "fields": {
+      "service": 7,
+      "price": 1413,
+      "est_time": "01:33:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 15,
+    "fields": {
+      "service": 32,
+      "price": 1730,
+      "est_time": "01:14:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 16,
+    "fields": {
+      "service": 22,
+      "price": 416,
+      "est_time": "00:31:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 17,
+    "fields": {
+      "service": 60,
+      "price": 745,
+      "est_time": "02:46:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 18,
+    "fields": {
+      "service": 55,
+      "price": 1247,
+      "est_time": "02:25:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 19,
+    "fields": {
+      "service": 38,
+      "price": 1782,
+      "est_time": "02:20:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 20,
+    "fields": {
+      "service": 55,
+      "price": 1750,
+      "est_time": "01:34:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 21,
+    "fields": {
+      "service": 59,
+      "price": 1316,
+      "est_time": "00:54:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 22,
+    "fields": {
+      "service": 6,
+      "price": 1476,
+      "est_time": "00:29:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 23,
+    "fields": {
+      "service": 52,
+      "price": 1447,
+      "est_time": "01:20:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 24,
+    "fields": {
+      "service": 37,
+      "price": 1024,
+      "est_time": "00:53:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 25,
+    "fields": {
+      "service": 26,
+      "price": 1851,
+      "est_time": "01:26:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 26,
+    "fields": {
+      "service": 64,
+      "price": 826,
+      "est_time": "01:31:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 27,
+    "fields": {
+      "service": 51,
+      "price": 512,
+      "est_time": "02:31:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 28,
+    "fields": {
+      "service": 7,
+      "price": 257,
+      "est_time": "01:54:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 29,
+    "fields": {
+      "service": 54,
+      "price": 1969,
+      "est_time": "02:17:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 30,
+    "fields": {
+      "service": 30,
+      "price": 841,
+      "est_time": "02:55:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 31,
+    "fields": {
+      "service": 41,
+      "price": 991,
+      "est_time": "01:20:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 32,
+    "fields": {
+      "service": 4,
+      "price": 1770,
+      "est_time": "00:22:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 33,
+    "fields": {
+      "service": 28,
+      "price": 2018,
+      "est_time": "01:45:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 34,
+    "fields": {
+      "service": 24,
+      "price": 571,
+      "est_time": "01:10:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 35,
+    "fields": {
+      "service": 55,
+      "price": 535,
+      "est_time": "00:42:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 36,
+    "fields": {
+      "service": 21,
+      "price": 54,
+      "est_time": "02:34:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 37,
+    "fields": {
+      "service": 7,
+      "price": 1670,
+      "est_time": "01:32:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 38,
+    "fields": {
+      "service": 20,
+      "price": 2354,
+      "est_time": "01:43:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 39,
+    "fields": {
+      "service": 12,
+      "price": 674,
+      "est_time": "01:51:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 40,
+    "fields": {
+      "service": 55,
+      "price": 2151,
+      "est_time": "01:52:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 41,
+    "fields": {
+      "service": 4,
+      "price": 414,
+      "est_time": "00:23:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 42,
+    "fields": {
+      "service": 29,
+      "price": 1899,
+      "est_time": "02:50:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 43,
+    "fields": {
+      "service": 52,
+      "price": 246,
+      "est_time": "00:08:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 44,
+    "fields": {
+      "service": 28,
+      "price": 1944,
+      "est_time": "01:37:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 45,
+    "fields": {
+      "service": 27,
+      "price": 369,
+      "est_time": "00:12:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 46,
+    "fields": {
+      "service": 40,
+      "price": 1795,
+      "est_time": "00:36:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 47,
+    "fields": {
+      "service": 21,
+      "price": 1980,
+      "est_time": "00:36:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 48,
+    "fields": {
+      "service": 14,
+      "price": 983,
+      "est_time": "00:38:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 49,
+    "fields": {
+      "service": 41,
+      "price": 1182,
+      "est_time": "01:60:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 50,
+    "fields": {
+      "service": 22,
+      "price": 1251,
+      "est_time": "00:32:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 51,
+    "fields": {
+      "service": 61,
+      "price": 1360,
+      "est_time": "02:47:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 52,
+    "fields": {
+      "service": 62,
+      "price": 1056,
+      "est_time": "02:05:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 53,
+    "fields": {
+      "service": 22,
+      "price": 123,
+      "est_time": "01:21:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 54,
+    "fields": {
+      "service": 66,
+      "price": 428,
+      "est_time": "01:19:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 55,
+    "fields": {
+      "service": 61,
+      "price": 789,
+      "est_time": "01:12:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 56,
+    "fields": {
+      "service": 7,
+      "price": 549,
+      "est_time": "02:52:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 57,
+    "fields": {
+      "service": 29,
+      "price": 124,
+      "est_time": "00:45:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 58,
+    "fields": {
+      "service": 44,
+      "price": 643,
+      "est_time": "00:46:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 59,
+    "fields": {
+      "service": 28,
+      "price": 1614,
+      "est_time": "00:54:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 60,
+    "fields": {
+      "service": 12,
+      "price": 2229,
+      "est_time": "02:19:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 61,
+    "fields": {
+      "service": 7,
+      "price": 1585,
+      "est_time": "02:49:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 62,
+    "fields": {
+      "service": 11,
+      "price": 937,
+      "est_time": "02:58:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 63,
+    "fields": {
+      "service": 21,
+      "price": 899,
+      "est_time": "00:19:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 64,
+    "fields": {
+      "service": 38,
+      "price": 1232,
+      "est_time": "01:44:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 65,
+    "fields": {
+      "service": 54,
+      "price": 2131,
+      "est_time": "00:49:00"
+    }
+  },
+  {
+    "model": "shop.shopservice",
+    "pk": 66,
+    "fields": {
+      "service": 10,
+      "price": 2381,
+      "est_time": "01:31:00"
+    }
+  }
+]

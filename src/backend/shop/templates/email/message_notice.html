@@ -1,0 +1,38 @@
+{% load i18n %}
+
+{% block subject %}
+New message on Sayyara from {{ message.author.get_username }}
+{% endblock subject %}
+
+{% block text_body %}
+{% blocktrans %}A new message has been posted in: {{ message.conversation.subject }}.{% endblocktrans %}
+
+{% blocktrans %}{{ message.created_at }} - {{ message.author.get_username }}:
+{{ message.message }}{% endblocktrans %}
+
+{% trans "Conversation link:" %}
+{{ protocol }}://{{ domain }}/linkRedirectQuote/NotImplemented
+
+{% trans "To stop receiving future email notification about this conversation, go to:" %}
+{{ protocol }}://{{ domain }}/unsubscribe/{{ message.pk }}/NotImplemented
+
+
+
+{% blocktrans %}The Sayyara team{% endblocktrans %}
+{% endblock text_body %}
+
+{% block html_body %}
+<p>A new message has been posted in: {{ message.conversation.subject }}</p>
+
+<hr/>
+<p>({{ message.created_at }}) {{ message.author.get_username }}: </p>
+<p>{{ message.message }}</p>
+<hr/>
+
+Click <a href="{{ protocol }}://{{ domain }}/linkRedirectQuote/NotImplemented">here</a> to view the conversation
+<a href="{{ protocol }}://{{ domain }}/unsubscribe/{{ message.pk }}/NotImplemented">Stop</a> receiving future email notification about this conversation.
+
+
+<br>
+<p>{% blocktrans %}The Sayyara team{% endblocktrans %}</p>
+{% endblock html_body %}

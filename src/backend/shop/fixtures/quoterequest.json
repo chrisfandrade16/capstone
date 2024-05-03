@@ -1,0 +1,137 @@
+[
+  {
+    "model": "shop.quoterequest",
+    "pk": 1,
+    "fields": {
+      "customer": 16,
+      "description": "Shocks & Struts Repair",
+      "vehicle": 29
+    }
+  },
+  {
+    "model": "shop.quoterequest",
+    "pk": 2,
+    "fields": {
+      "customer": 23,
+      "description": "Radiator Repair & Replacement",
+      "vehicle": 9
+    }
+  },
+  {
+    "model": "shop.quoterequest",
+    "pk": 3,
+    "fields": {
+      "customer": 23,
+      "description": "Differential Rebuild & Service",
+      "vehicle": 9
+    }
+  },
+  {
+    "model": "shop.quoterequest",
+    "pk": 4,
+    "fields": {
+      "customer": 21,
+      "description": "Filter Replacements",
+      "vehicle": 7
+    }
+  },
+  {
+    "model": "shop.quoterequest",
+    "pk": 5,
+    "fields": {
+      "customer": 16,
+      "description": "Exhaust Manifold Repair/Replacement",
+      "vehicle": 2
+    }
+  },
+  {
+    "model": "shop.quoterequest",
+    "pk": 6,
+    "fields": {
+      "customer": 25,
+      "description": "Ignition System Repair & Maintenance",
+      "vehicle": 23
+    }
+  },
+  {
+    "model": "shop.quoterequest",
+    "pk": 7,
+    "fields": {
+      "customer": 20,
+      "description": "Flywheel Repair & Replacement",
+      "vehicle": 6
+    }
+  },
+  {
+    "model": "shop.quoterequest",
+    "pk": 8,
+    "fields": {
+      "customer": 20,
+      "description": "Tailpipe Repair/Replacement",
+      "vehicle": 6
+    }
+  },
+  {
+    "model": "shop.quoterequest",
+    "pk": 9,
+    "fields": {
+      "customer": 24,
+      "description": "AC Belt Replacement",
+      "vehicle": 24
+    }
+  },
+  {
+    "model": "shop.quoterequest",
+    "pk": 10,
+    "fields": {
+      "customer": 16,
+      "description": "Alternator Repair & Replacement",
+      "vehicle": 2
+    }
+  },
+  {
+    "model": "shop.quoterequest",
+    "pk": 11,
+    "fields": {
+      "customer": 23,
+      "description": "Brake fluid leak",
+      "vehicle": 9
+    }
+  },
+  {
+    "model": "shop.quoterequest",
+    "pk": 12,
+    "fields": {
+      "customer": 1,
+      "description": "Hose Replacement",
+      "vehicle": 1
+    }
+  },
+  {
+    "model": "shop.quoterequest",
+    "pk": 13,
+    "fields": {
+      "customer": 25,
+      "description": "Compressor Repair/Replacement",
+      "vehicle": 23
+    }
+  },
+  {
+    "model": "shop.quoterequest",
+    "pk": 14,
+    "fields": {
+      "customer": 22,
+      "description": "Season Tire Change",
+      "vehicle": 27
+    }
+  },
+  {
+    "model": "shop.quoterequest",
+    "pk": 15,
+    "fields": {
+      "customer": 21,
+      "description": "Tire Replacement",
+      "vehicle": 7
+    }
+  }
+]
